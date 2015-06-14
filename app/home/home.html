@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="(key, user) in users">
+    <div class="profile-card" style="background-image: url({{user.gravatar}})">
+      <div class="crush">
+        <i class="fa fa-heart-o fa-4x" ng-click="crush(user.$id)" ng-hide="user.crush === currentUser.uid"></i>
+        <i class="fa fa-heart fa-4x" ng-if="user.crush === currentUser.uid"></i>
+      </div>
+      <div class="profile-info">
+        <span class="name">{{user.name}}</span><br>
+        <span>{{user.gender}} | {{user.username}}</span>
+      </div>
+    </div>
+  </div>
+</div>
