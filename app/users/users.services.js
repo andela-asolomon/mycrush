@@ -25,6 +25,7 @@ angular.module('MyCrush')
             crush: true,
             gender: true,
             username: true,
+            description: true
           };
 
           return usersRef.child(uid).set(profile, function(error) {

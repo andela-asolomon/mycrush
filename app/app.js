@@ -20,7 +20,11 @@ angular
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'home/home.html',
+        templateUrl: 'home/home.html'
+      })
+      .state('timeline', {
+        url: '/timeline',
+        templateUrl: 'home/timeline.html',
         controller: 'UserController',
         resolve : {
           users: function(Users) {

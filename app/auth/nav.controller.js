@@ -19,7 +19,7 @@ angular.module('MyCrush')
         };
         Users.createProfile(authData.uid, user);
         console.log("Logged in as:", authData);
-        $state.go('home');
+        $state.go('timeline');
         toaster.pop('success', 'Logged in as ' + authData.google.cachedUserProfile.name);
 
       }).catch(function(error) {

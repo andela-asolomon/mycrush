@@ -6,7 +6,7 @@ angular.module('MyCrush')
 
       $scope.updateProfile = function() {
         $scope.profile.$save().then(function(){
-          $state.go('home');
+          $state.go('timeline');
         });
       }
 

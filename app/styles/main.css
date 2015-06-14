@@ -11,6 +11,12 @@ a, a:hover, a:focus {
   color: #121515;
 }
 
+body {
+  background: url('../images/lovers_dream-wide.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 
 
 /* Form */
