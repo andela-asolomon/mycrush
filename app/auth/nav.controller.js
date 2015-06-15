@@ -11,13 +11,21 @@ angular.module('MyCrush')
     $scope.login = function() {
       var options = { remember: true, scope: 'email' };
       Authentication.$authWithOAuthPopup("google", options).then(function(authData) {
-        var user = {
-          name: authData.google.cachedUserProfile.name,
-          accessToken: authData.google.accessToken,
-          gravatar: authData.google.cachedUserProfile.picture,
-          email: authData.google.email
-        };
-        Users.createProfile(authData.uid, user);
+
+        Users.getProfile(authData.uid).$loaded().then(function(profile){
+          if (profile) {
+            return
+          } else {
+            var user = {
+              name: authData.google.cachedUserProfile.name,
+              accessToken: authData.google.accessToken,
+              gravatar: authData.google.cachedUserProfile.picture,
+              email: authData.google.email
+            };
+            Users.createProfile(authData.uid, user);
+          }
+        });
+
         $state.go('timeline');
         toaster.pop('success', 'Logged in as ' + authData.google.cachedUserProfile.name);
 
