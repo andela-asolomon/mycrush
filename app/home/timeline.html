@@ -8,8 +8,17 @@
       <div class="profile-info">
         <span class="name">{{user.name}}</span><br>
         <span>{{user.gender}} | {{user.username}}</span><br>
-        <span>{{user.description}}</span>
+        <span>{{user.description}}</span><br>
+        <span ng-if="user.online" class="text-success">online</span>
+        <span ng-if="!user.online" class="text-danger">offline</span> <br>
+        <span>
+          <a ui-sref="timeline.direct({uid: user.$id})" ui-sref-active="selected">Chat</a>
+        </span>
       </div>
     </div>
+  </div>
+
+  <div>
+    <ui-view></ui-view>
   </div>
 </div>

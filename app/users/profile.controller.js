@@ -7,7 +7,8 @@ angular.module('MyCrush')
       $scope.updateProfile = function() {
         $scope.profile.$save().then(function(){
           $state.go('timeline');
+          toaster.pop('success', 'Profile Updated Successfully');
         });
-      }
+      };
 
   }])

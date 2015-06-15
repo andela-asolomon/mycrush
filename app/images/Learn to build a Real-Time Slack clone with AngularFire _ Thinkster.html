@@ -1,0 +1,1073 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://thinkster.io/angularfire-slack-tutorial/ -->
+<html lang="en-US" hola_ext_inject="disabled"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Learn to build a Real-Time Slack clone with AngularFire | Thinkster</title>
+<meta name="description" content="Learn how to use AngularJS with Firebase to build a real-time Slack clone">
+<meta property="og:description" content="Learn how to use AngularJS with Firebase to build a real-time Slack clone">
+<meta property="og:title" content="Learn to build a Real-Time Slack clone with AngularFire">
+<meta property="og:type" content="website">
+<meta property="og:url" content="">
+<meta property="og:image:secure_url" content="">
+<meta property="og:site_name" content="Thinkster">
+<meta property="fb:app_id" content="233793626767821">
+<meta property="twitter:card" content="summary">
+<meta property="twitter:site" content="@GoThinkster">
+<link href="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://thinkster.io/styles/main.css">
+<style>[ng-cloak]{display:none;}</style>
+<script type="text/javascript" async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/546e6b25c2b687f594000007.js"></script><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/analytics.js"></script><script type="text/javascript" async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/mixpanel-2.2.min.js"></script><script>
+  /*
+ AngularJS v1.3.11
+ (c) 2010-2014 Google, Inc. http://angularjs.org
+ License: MIT
+*/
+(function(){'use strict';function d(b){return function(){var c=arguments[0],e;e="["+(b?b+":":"")+c+"] http://errors.angularjs.org/1.3.11/"+(b?b+"/":"")+c;for(c=1;c<arguments.length;c++){e=e+(1==c?"?":"&")+"p"+(c-1)+"=";var d=encodeURIComponent,a;a=arguments[c];a="function"==typeof a?a.toString().replace(/ \{[\s\S]*$/,""):"undefined"==typeof a?"undefined":"string"!=typeof a?JSON.stringify(a):a;e+=d(a)}return Error(e)}}(function(b){function c(a,c,b){return a[c]||(a[c]=b())}var e=d("$injector"),n=d("ng");
+b=c(b,"angular",Object);b.$$minErr=b.$$minErr||d;return c(b,"module",function(){var a={};return function(b,d,g){if("hasOwnProperty"===b)throw n("badname","module");d&&a.hasOwnProperty(b)&&(a[b]=null);return c(a,b,function(){function a(b,d,e,f){f||(f=c);return function(){f[e||"push"]([b,d,arguments]);return h}}if(!d)throw e("nomod",b);var c=[],k=[],l=[],m=a("$injector","invoke","push",k),h={_invokeQueue:c,_configBlocks:k,_runBlocks:l,requires:d,name:b,provider:a("$provide","provider"),factory:a("$provide",
+"factory"),service:a("$provide","service"),value:a("$provide","value"),constant:a("$provide","constant","unshift"),animation:a("$animateProvider","register"),filter:a("$filterProvider","register"),controller:a("$controllerProvider","register"),directive:a("$compileProvider","directive"),config:m,run:function(a){l.push(a);return this}};g&&m(g);return h})}})})(window)})(window);
+
+
+
+  /*!
+  * $script.js JS loader & dependency manager
+  * https://github.com/ded/script.js
+  * (c) Dustin Diaz 2014 | License MIT
+  */
+(function(e,t){typeof module!="undefined"&&module.exports?module.exports=t():typeof define=="function"&&define.amd?define(t):this[e]=t()})("$script",function(){function p(e,t){for(var n=0,i=e.length;n<i;++n)if(!t(e[n]))return r;return 1}function d(e,t){p(e,function(e){return!t(e)})}function v(e,t,n){function g(e){return e.call?e():u[e]}function y(){if(!--h){u[o]=1,s&&s();for(var e in f)p(e.split("|"),g)&&!d(f[e],g)&&(f[e]=[])}}e=e[i]?e:[e];var r=t&&t.call,s=r?t:n,o=r?e.join(""):t,h=e.length;return setTimeout(function(){d(e,function t(e,n){if(e===null)return y();e=!n&&e.indexOf(".js")===-1&&!/^https?:\/\//.test(e)&&c?c+e+".js":e;if(l[e])return o&&(a[o]=1),l[e]==2?y():setTimeout(function(){t(e,!0)},0);l[e]=1,o&&(a[o]=1),m(e,y)})},0),v}function m(n,r){var i=e.createElement("script"),u;i.onload=i.onerror=i[o]=function(){if(i[s]&&!/^c|loade/.test(i[s])||u)return;i.onload=i[o]=null,u=1,l[n]=2,r()},i.async=1,i.src=h?n+(n.indexOf("?")===-1?"?":"&")+h:n,t.insertBefore(i,t.lastChild)}var e=document,t=e.getElementsByTagName("head")[0],n="string",r=!1,i="push",s="readyState",o="onreadystatechange",u={},a={},f={},l={},c,h;return v.get=m,v.order=function(e,t,n){(function r(i){i=e.shift(),e.length?v(i,r):v(i,t,n)})()},v.path=function(e){c=e},v.urlArgs=function(e){h=e},v.ready=function(e,t,n){e=e[i]?e:[e];var r=[];return!d(e,function(e){u[e]||r[i](e)})&&p(e,function(e){return u[e]})?t():!function(e){f[e]=f[e]||[],f[e][i](t),n&&n(r)}(e.join("|")),v},v.done=function(e){v([null],e)},v})
+
+
+
+    $script([
+  
+    '//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular.min.js',
+    '//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-touch.min.js',
+    '//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-animate.min.js',
+    '//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-messages.min.js',
+    '//ajax.googleapis.com/ajax/libs/angularjs/1.3.11/angular-aria.min.js',
+  
+      '/scripts/mainApp.js',
+    ], function() {
+      window.launchThinksterApp()
+    })
+
+    // load stripe library
+    $script([
+      'https://js.stripe.com/v2/',
+    ], function() {
+      window.Stripe.setPublishableKey('pk_live_2vJQ3CFTUejIVZsmF5G2JkAt');
+    })
+  </script><style type="text/css"></style>
+<meta property="twitter:creator" content="@iamalbertpai"><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/angular.min.js"></script><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/angular-touch.min.js"></script><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/angular-animate.min.js"></script><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/angular-messages.min.js"></script><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/angular-aria.min.js"></script><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/mainApp.js"></script><script async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/saved_resource"></script>
+<script type="text/javascript" async="" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/tagjs"></script><script type="text/javascript" src="chrome-extension://aadgmnobpdmgmigaicncghmmoeflnamj/ng-inspector.js"></script><img src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/saved_resource(1)" width="1" height="1" border="0"><img src="https://secure.adnxs.com/seg?t=2&add=2312769" width="0" height="0" border="0" style="display: none !important; visibility: hidden !important; opacity: 0 !important; background-position: 1px 1px;"></head>
+<body ng-strict-di="" class="ng-scope">
+<status-bar class="ng-isolate-scope"><div class="status-bar"><div class="auth-info"><div ng-show="user.isAuthed" aria-hidden="false"><a href="https://thinkster.io/profile" class="ng-binding">ayoola.solomon@andela.co</a> <span>|</span> <a href="" logout="">logout</a></div><div ng-hide="user.isAuthed" aria-hidden="true" class="ng-hide"><a href="https://thinkster.io/login">Login</a> <span>or</span> <a href="https://thinkster.io/login#/signup">Signup</a></div></div><payment-alert class="ng-isolate-scope"><div class="top-alert alert alert-danger ng-hide" role="alert" ng-show="show" aria-hidden="true"><strong>Oh no!</strong> There was a problem with your credit card! <a href="" ng-click="openModal()" tabindex="0">Try Again</a> <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="close()" tabindex="0"><span>×</span></button></div></payment-alert></div></status-bar>
+<div class="content-wrapper">
+<script>
+window.courseData = {"_id":"5578dfc9fce9174d1218cb25","url":"angularfire-slack-tutorial","title":"Learn to build a Real-Time Slack clone with AngularFire","description":"Learn how to use AngularJS with Firebase to build a real-time Slack clone","authors":[{"__v":0,"_id":"54cdcc0db1e922a66e118b2f","bio":"cofounder of Thinkster","github":"apai4","name":"Albert Pai","picture":"//pbs.twimg.com/profile_images/378800000083138513/0023a916f6679d6b7df59d5812be938f.jpeg","twitter":"iamalbertpai","url":"pai","user":"54cd7f66313471cc3fcd7b5e"}],"coverImage":"images/firebase.jpg","paymentAccount":"thinkster"};
+</script>
+ 
+<div class="course-page">
+<script charset="ISO-8859-1" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/E-v1.js"></script>
+<course class="ng-isolate-scope"><div class="header" ng-style="::course.backgroundStyle" style="background: url(https://thinkster.io/images/angularfire-slack-tutorial/images/firebase.jpg) 50% 50% no-repeat;"><div class="logo visible-md-block visible-lg-block"><a href="https://thinkster.io/"><span>powered by</span>thinkster</a></div><div class="course-info"><div class="container"><div class="row"><div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><h1 class="ng-binding">Learn to build a Real-Time Slack clone with AngularFire</h1></div><div class="col-lg-8 col-lg-offset-2 col-md-8 col-md-offset-2 col-sm-12 col-xs-12"></div></div><div class="hidden-sm hidden-xs dl-fixed ng-hide" auth-show=""><download-src class="ng-isolate-scope ng-hide"><div class="download-link">
+<a href="" ng-click="fetchLink()" ng-show="userPro" tabindex="0" aria-hidden="true" class="ng-hide"><i class="ion-code-download"></i> Download Completed Source Code</a>
+<a href="https://thinkster.io/pro" ng-show="!userPro" aria-hidden="false"><i class="ion-code-download"></i>  Download Completed Source Code - Go PRO!</a>
+</div></download-src></div></div></div><div class="bottom-bar-wrap ui-scrollfix" ui-scrollfix="-5"><div class="bottom-bar"><a href="https://thinkster.io/" class="logo-font logo-letter">t</a><div class="twt-follow"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/follow_button.964d0a94cc325dea7c2e73bb84c10df0.en.html"></iframe></div><div class="pull-right"><div class="add-on hidden-sm hidden-xs"><a ng-href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F" class="btn share-btn facebook" target="_blank" ng-transclude="" service="facebook" classes="btn share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F"><i class="ion-social-facebook ng-scope"></i><span class="ng-scope"> Share</span></a><a ng-href="https://twitter.com/intent/tweet?text=Learn%20to%20build%20a%20Real-Time%20Slack%20clone%20with%20AngularFire&amp;url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F&amp;related=gothinkster,angulartutorial&quot;" class="btn share-btn twitter" target="_blank" ng-transclude="" service="twitter" text="Learn to build a Real-Time Slack clone with AngularFire" classes="btn share-btn twitter" href="https://twitter.com/intent/tweet?text=Learn%20to%20build%20a%20Real-Time%20Slack%20clone%20with%20AngularFire&url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F&related=gothinkster,angulartutorial%22"><i class="ion-social-twitter ng-scope"></i><span class="ng-scope"> Tweet</span></a><a ng-href="https://plus.google.com/share?url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F" class="btn share-btn google" target="_blank" ng-transclude="" service="google" classes="btn share-btn google" href="https://plus.google.com/share?url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F"><i class="ion-social-google ng-scope"></i><span class="ng-scope"> +1</span></a></div><!-- ngIf: ::course.data.git --></div></div><div class="spacer"></div></div></div><div class="container-fluid"><div class="row"><div class="sidebar col-lg-2 col-md-2 hidden-sm hidden-xs"><course-nav class="ng-isolate-scope"><div id="sidebar-nav" class="content-index ui-scrollfix" du-scrollspy="bottom-of-page" offset="500px" ui-scrollfix="-35"><nav><ul class="course-nav"><!-- ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="100px" du-scrollspy="introduction" class="ng-scope"><a ng-href="#introduction" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#introduction">Introduction </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="122px" du-scrollspy="getting-started" class="ng-scope"><a ng-href="#getting-started" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#getting-started">Getting Started </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="144px" du-scrollspy="authenticating-users-using-angularfire" class="ng-scope"><a ng-href="#authenticating-users-using-angularfire" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#authenticating-users-using-angularfire">Authenticating Users using angularFire </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="166px" du-scrollspy="storing-user-profiles-in-firebase" class="ng-scope"><a ng-href="#storing-user-profiles-in-firebase" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#storing-user-profiles-in-firebase">Storing User Profiles in Firebase </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="188px" du-scrollspy="creating-the-channels-sidebar" class="ng-scope"><a ng-href="#creating-the-channels-sidebar" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#creating-the-channels-sidebar">Creating the Channels Sidebar </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="210px" du-scrollspy="adding-messaging-functionality" class="ng-scope"><a ng-href="#adding-messaging-functionality" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#adding-messaging-functionality">Adding Messaging Functionality </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="232px" du-scrollspy="creating-direct-messages" class="ng-scope active"><a ng-href="#creating-direct-messages" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#creating-direct-messages">Creating Direct Messages </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="254px" du-scrollspy="adding-presence-to-users" class="ng-scope"><a ng-href="#adding-presence-to-users" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#adding-presence-to-users">Adding Presence to Users </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="276px" du-scrollspy="securing-your-data-with-security-rules" class="ng-scope"><a ng-href="#securing-your-data-with-security-rules" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#securing-your-data-with-security-rules">Securing Your Data with Security Rules </a></li><!-- end ngRepeat: h1 in h1s --><li ng-repeat="h1 in h1s" offset="298px" du-scrollspy="deploying-to-firebase" class="ng-scope"><a ng-href="#deploying-to-firebase" du-smooth-scroll="" offset="60px" class="ng-binding" href="https://thinkster.io/angularfire-slack-tutorial/#deploying-to-firebase">Deploying to Firebase </a></li><!-- end ngRepeat: h1 in h1s --></ul></nav></div></course-nav></div><div class="course-body col-lg-10 col-md-10 col-sm-12 col-xs-12"><div class="author-announce"><div class="author-list"><div class="pre-title">Your instructor<span ng-show="course.data.authors.length &gt; 1" aria-hidden="true" class="ng-hide">s</span></div><div><!-- ngRepeat: author in course.data.authors --><div class="author-name ng-scope" ng-repeat="author in course.data.authors"><a class="img-holder" ng-href="/author/pai" href="https://thinkster.io/author/pai"><img ng-src="//pbs.twimg.com/profile_images/378800000083138513/0023a916f6679d6b7df59d5812be938f.jpeg" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/0023a916f6679d6b7df59d5812be938f.jpeg"></a><div class="meta"><a ng-href="/author/pai" class="name ng-binding" href="https://thinkster.io/author/pai">Albert Pai</a><div class="social"><!-- ngIf: ::author.twitter --><a ng-if="::author.twitter" ng-href="https://twitter.com/iamalbertpai" target="_blank" class="ng-scope" href="https://twitter.com/iamalbertpai"><i class="ion-social-twitter"></i></a><!-- end ngIf: ::author.twitter --> <!-- ngIf: ::author.github --><a ng-if="::author.github" ng-href="https://github.com/apai4" target="_blank" class="ng-scope" href="https://github.com/apai4"><i class="ion-social-octocat"></i></a><!-- end ngIf: ::author.github --></div></div></div><!-- end ngRepeat: author in course.data.authors --></div></div><!-- ngIf: course.showEmailSignUp --><div class="capture-email" style="font-weight:bold" auth-hide=""><download-src class="ng-isolate-scope ng-hide"><div class="download-link">
+<a href="" ng-click="fetchLink()" ng-show="userPro" tabindex="0" aria-hidden="true" class="ng-hide"><i class="ion-code-download"></i> Download Completed Source Code</a>
+<a href="https://thinkster.io/pro" ng-show="!userPro" aria-hidden="false"><i class="ion-code-download"></i>  Download Completed Source Code - Go PRO!</a>
+</div></download-src></div></div><ng-transclude>
+<div class="course-section ng-scope" id="introduction">
+<h1>Introduction <a href="https://thinkster.io/angularfire-slack-tutorial/#introduction" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<iframe class="yt-embed" width="420" height="315" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/rpMlTvhQClQ.html" frameborder="0" allowfullscreen=""></iframe><p ng-non-bindable="">The goal of this tutorial is to guide you through the creation of a <a href="https://slack.com/" target="_blank">Slack</a> clone called fireSlack. Upon completion, you will learn how to build a real time collaborative chat application using <a href="https://www.firebase.com/docs/web/libraries/angular/index.html" target="_blank">angularFire</a> to integrate <a href="https://firebase.com/" target="_blank">Firebase</a> with <a href="https://angularjs.org/" target="_blank">AngularJS</a>. Your application will be able to provide the following features:</p>
+<ul>
+<li>Sign up for an account</li>
+<li>Join/create channels to chat in</li>
+<li>Have a user profile</li>
+<li>Direct message other users</li>
+<li>See who's online</li>
+</ul>
+<h2 id="introduction-prerequisites">Prerequisites <a href="https://thinkster.io/angularfire-slack-tutorial/#introduction-prerequisites" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h2>
+<p ng-non-bindable="">This course assumes knowledge of programming and at least basic knowledge of JavaScript and AngularJS. We recommend going through <a href="https://thinkster.io/a-better-way-to-learn-angularjs/" target="_blank">A Better Way to Learn AngularJS</a> if you're not familiar with AngularJS. We've created a <a href="https://github.com/apai4/fireslack-seed" target="_blank">seed repo</a> based off of the <a href="https://github.com/yeoman/generator-angular" target="_blank">Yeoman AngularJS Generator</a> to help you get started faster. Before you begin, you will need to have <a href="https://nodejs.org/" target="_blank">Node.js</a>, <a href="https://www.npmjs.org/" target="_blank">npm</a>, and <a href="https://git-scm.com/" target="_blank">Git</a> installed. We'll need Node.js and npm in order to install <a href="http://gruntjs.com/" target="_blank">Grunt</a> and <a href="http://bower.io/" target="_blank">Bower</a> for managing dependencies. Follow <a href="https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager" target="_blank">these instructions</a> for installing Node.js and npm, and <a href="https://git-scm.com/book/en/v2/Getting-Started-Installing-Git" target="_blank">these instructions</a> for installing Git. Additionally, you'll need to have a <a href="https://www.firebase.com/signup/?utm_medium=tutorial&utm_source=thinkster&campaign=angular_article" target="_blank">free Firebase account</a> and create a Firebase for this tutorial.</p>
+<checkbox id="install_node" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Install Node.js
+</span></div></div></checkbox>
+<checkbox id="install_git" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Install Git
+</span></div></div></checkbox>
+<checkbox id="clone_seed_repo" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Clone the </span><a href="https://github.com/apai4/fireslack-seed" target="_blank" class="ng-scope">seed repo</a>
+</div></div></checkbox>
+<checkbox id="create_firebase" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a new Firebase from the Firebase Dashboard
+</span></div></div></checkbox>
+<h2 id="introduction-final-notes-about-the-tutorial">Final Notes About the Tutorial <a href="https://thinkster.io/angularfire-slack-tutorial/#introduction-final-notes-about-the-tutorial" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h2>
+<p ng-non-bindable="">You should <em>never</em> copy and paste code from this text unless we tell you to, as we've found that the skills being taught will stick better if you write out all of the code yourself. If you need more clarification on a certain part of the tutorial, we recommend that viewing the supplementary screencast series as we go into far more detail in each of the videos. It's also significantly easier to learn from the screencast series than the text, as you can actually see how a skilled developer manipulates the concepts in AngularJS to build a working application.</p>
+</div>
+<div class="course-section ng-scope" id="getting-started">
+<h1>Getting Started <a href="https://thinkster.io/angularfire-slack-tutorial/#getting-started" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<p ng-non-bindable="">Once the initial codebase is cloned locally, we'll need to run a few commands to install dependencies and get our application up and running. Within our codebase, run the following commands:</p>
+<checkbox id="run_npm_install" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Run </span><code ng-non-bindable="" class="ng-scope">npm install</code><span class="ng-scope"> to install our node dependencies
+</span></div></div></checkbox>
+<checkbox id="install_bower_grunt" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Run </span><code ng-non-bindable="" class="ng-scope">npm install -g bower grunt-cli</code><span class="ng-scope"> to install Bower and Grunt.
+</span></div></div></checkbox>
+<checkbox id="run_bower_install" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Run </span><code ng-non-bindable="" class="ng-scope">bower install</code><span class="ng-scope"> to install our bower dependencies
+</span></div></div></checkbox>
+<checkbox id="run_grunt_serve" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Run </span><code ng-non-bindable="" class="ng-scope">grunt serve</code><span class="ng-scope"> to start our application.
+</span></div></div></checkbox>
+<p ng-non-bindable="">After running <code ng-non-bindable="">grunt serve</code>, open up <code ng-non-bindable="">http://localhost:4000</code> and you should see a splash page for our application, with a non-functional login and register page ready for us to build off of. In this tutorial, our directory structure will be grouped by feature (see #1 in <a href="https://www.airpair.com/angularjs/posts/top-10-mistakes-angularjs-developers-make" target="_blank">this list</a>) and we will be using <a href="https://github.com/angular-ui/ui-router" target="_blank">ui-router</a> as our router. We'll also be using the "controller as" syntax for referencing our controllers.</p>
+</div>
+<div class="course-section ng-scope" id="authenticating-users-using-angularfire">
+<h1>Authenticating Users using angularFire <a href="https://thinkster.io/angularfire-slack-tutorial/#authenticating-users-using-angularfire" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<p ng-non-bindable="">Creating a registration and login system for your app can be tedious, but is often one of the most important and required features, and usually requires you to create your own backend. Thankfully, Firebase makes this really easy for us by providing us with a hosted solution.</p>
+<checkbox id="enable_auth_auth" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In the Login &amp; Auth section of your Firebase, check the Enable Email &amp; Password Authentication box.
+</span></div></div></checkbox>
+<p ng-non-bindable="">While you have your Firebase pulled up, keep your Firebase URL handy. It should look something like: <code ng-non-bindable="">https://firebase-name-here.firebaseio.com/</code></p>
+<checkbox id="set_firebaseurl" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+At the bottom of </span><code ng-non-bindable="" class="ng-scope">app/app.js</code><span class="ng-scope">, set the </span><code ng-non-bindable="" class="ng-scope">FirebaseUrl</code><span class="ng-scope"> constant to your Firebase Url.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">  <span class="hljs-class">.constant</span>(<span class="hljs-string">'FirebaseUrl'</span>, <span class="hljs-string">'https://firebase-name-here.firebaseio.com/'</span>);
+</code></pre>
+<h2 id="authenticating-users-using-angularfire-creating-the-auth-service">Creating the Auth Service <a href="https://thinkster.io/angularfire-slack-tutorial/#authenticating-users-using-angularfire-creating-the-auth-service" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h2>
+<screencast markdown-id="authservice" title="undefined" thumbnail-url="https://embed-ssl.wistia.com/deliveries/bcde2f5c4a479543e69565263068b76fa31d4b29.jpg?image_crop_resized=100x60" class="ng-isolate-scope"><div class="video-box"><!-- ngIf: ::!sc.isPro --><div ng-if="::!sc.isPro" class="cover-image ng-scope" ng-click="sc.openModal()" ng-style="::sc.coverImageStyle" tabindex="0" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)) , url(https://embed-ssl.wistia.com/deliveries/bcde2f5c4a479543e69565263068b76fa31d4b29.jpg) 50% 50% no-repeat;"><div class="fake-play-button" alt="Play Button - click to play" style=""></div></div><!-- end ngIf: ::!sc.isPro --><!-- ngIf: ::sc.isPro --></div></screencast>
+<checkbox id="create_new_auth_service" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Let's create a new factory called </span><code ng-non-bindable="" class="ng-scope">Auth</code><span class="ng-scope"> in </span><code ng-non-bindable="" class="ng-scope">app/auth/auth.service.js</code>
+</div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.<span class="hljs-built_in">module</span>(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .factory(<span class="hljs-string">'Auth'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+
+  });
+</code></pre>
+<p ng-non-bindable="">Here we'll inject <code ng-non-bindable="">$firebaseAuth</code>, which is a service that AngularFire provides us with, along with our constant, <code ng-non-bindable="">FirebaseUrl</code>. Then we'll be able to create a reference to Firebase using the <code ng-non-bindable="">Firebase</code> constructor and our <code ng-non-bindable="">FirebaseUrl</code>, which we'll be passing to the <code ng-non-bindable="">$firebaseAuth</code> service. See the <a href="https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-users-and-authentication" target="_blank">angularFire API docs</a> for a list of available methods <code ng-non-bindable="">$firebaseAuth</code> provides. Our factory will return the <code ng-non-bindable="">$firebaseAuth</code> service associated with our Firebase.</p>
+<checkbox id="inject_auth_dependencies" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Inject </span><code ng-non-bindable="" class="ng-scope">$firebaseAuth</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">FirebaseUrl</code><span class="ng-scope"> into our </span><code ng-non-bindable="" class="ng-scope">Auth</code><span class="ng-scope"> factory.
+</span></div></div></checkbox>
+<checkbox id="create_firebase_reference" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a Firebase reference to our Firebase with </span><code ng-non-bindable="" class="ng-scope">var ref = new Firebase(FirebaseUrl);</code>
+</div></div></checkbox>
+<checkbox id="create_firebase_auth" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Pass the Firebase reference to the </span><code ng-non-bindable="" class="ng-scope">$firebaseAuth</code><span class="ng-scope"> service, and have your factory return it.
+</span></div></div></checkbox>
+<p ng-non-bindable="">The resulting factory should look like this:</p>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module('angularfireSlackApp')
+  .factory('<span class="hljs-type">Auth</span>', function($firebaseAuth, <span class="hljs-type">FirebaseUrl</span>){
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">ref</span> = new <span class="hljs-type">Firebase</span>(<span class="hljs-type">FirebaseUrl</span>);
+    <span class="hljs-keyword">var</span> auth = $firebaseAuth(<span class="hljs-keyword">ref</span>);
+
+    <span class="hljs-keyword">return</span> auth;
+  });
+</code></pre>
+<p ng-non-bindable="">Now that we have an <code ng-non-bindable="">Auth</code> service ready for our application to use, let's create a controller to use with our login and registration forms.</p>
+<h2 id="authenticating-users-using-angularfire-creating-the-auth-controller">Creating the Auth Controller <a href="https://thinkster.io/angularfire-slack-tutorial/#authenticating-users-using-angularfire-creating-the-auth-controller" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h2>
+<screencast markdown-id="authcontroller" title="undefined" thumbnail-url="https://embed-ssl.wistia.com/deliveries/3c0028cf88e8589105b51e5e40b350a082526cb1.jpg?image_crop_resized=100x60" class="ng-isolate-scope"><div class="video-box"><!-- ngIf: ::!sc.isPro --><div ng-if="::!sc.isPro" class="cover-image ng-scope" ng-click="sc.openModal()" ng-style="::sc.coverImageStyle" tabindex="0" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)) , url(https://embed-ssl.wistia.com/deliveries/3c0028cf88e8589105b51e5e40b350a082526cb1.jpg) 50% 50% no-repeat;"><div class="fake-play-button" alt="Play Button - click to play" style=""></div></div><!-- end ngIf: ::!sc.isPro --><!-- ngIf: ::sc.isPro --></div></screencast>
+<checkbox id="create_authctrl" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a controller named </span><code ng-non-bindable="" class="ng-scope">AuthCtrl</code><span class="ng-scope"> and inject </span><code ng-non-bindable="" class="ng-scope">Auth</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">$state</code><span class="ng-scope"> into it.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .controller(<span class="hljs-string">'AuthCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(Auth, $state)</span></span>{
+    <span class="hljs-keyword">var</span> authCtrl = <span class="hljs-keyword">this</span>;
+
+  });
+</code></pre>
+<p ng-non-bindable="">The <code ng-non-bindable="">$state</code> service is provided by <code ng-non-bindable="">ui-router</code> for us to control the state of our application. We can use the <code ng-non-bindable="">go()</code> function on <code ng-non-bindable="">$state</code> to redirect our application to a specific state. We also create a reference to the <code ng-non-bindable="">this</code> keyword within our controller because we're using the <code ng-non-bindable="">controller as</code> syntax. For more information about this syntax, see <a href="https://thinkster.io/a-better-way-to-learn-angularjs/controllers" target="_blank">this lesson</a>.</p>
+<checkbox id="initialize_user" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Next, create a user object on our controller with empty strings for email and password
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .controller(<span class="hljs-string">'AuthCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(Auth, $state)</span></span>{
+    <span class="hljs-keyword">var</span> authCtrl = <span class="hljs-keyword">this</span>;
+
+    authCtrl.user = {
+      email: <span class="hljs-string">''</span>,
+      password: <span class="hljs-string">''</span>
+    };
+  });
+</code></pre>
+<p ng-non-bindable="">This user object will be used with the <code ng-non-bindable="">ng-model</code> directive in our form. Next, we'll need two functions on our controller, one for registering users and one for logging in users. <code ng-non-bindable="">$firebaseAuth</code> provides us with two functions: <code ng-non-bindable="">$authWithPassword</code> for logging in users and <code ng-non-bindable="">$createUser</code> for registering users. Both of these functions take a user object like the one we initialized on our controller, and return a promise. If you're not familiar with how promises work, read <a href="https://thinkster.io/a-better-way-to-learn-angularjs/promises" target="_blank">this</a> to learn more about promises.</p>
+<checkbox id="create_authctrl_login" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the following </span><code ng-non-bindable="" class="ng-scope">login</code><span class="ng-scope"> function in </span><code ng-non-bindable="" class="ng-scope">AuthCtrl</code><span class="ng-scope">:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">authCtrl.login = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span>{
+  Auth.$authWithPassword(authCtrl.user).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(auth)</span></span>{
+    $state.go(<span class="hljs-string">'home'</span>);
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error)</span></span>{
+    authCtrl.<span class="hljs-built_in">error</span> = <span class="hljs-built_in">error</span>;
+  });
+};
+</code></pre>
+<p ng-non-bindable="">When authentication is successful, we want to send the user to the home state. When it fails, we want to set the error on our controller so we can display the error message to our user.</p>
+<checkbox id="create_authctrl_register" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the following </span><code ng-non-bindable="" class="ng-scope">register</code><span class="ng-scope"> function in </span><code ng-non-bindable="" class="ng-scope">AuthCtrl</code>
+</div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">authCtrl.register = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span>{
+  Auth.$createUser(authCtrl.user).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(user)</span></span>{
+    authCtrl.login();
+  }, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(error)</span></span>{
+    authCtrl.<span class="hljs-built_in">error</span> = <span class="hljs-built_in">error</span>;
+  });
+};
+</code></pre>
+<p ng-non-bindable="">Our <code ng-non-bindable="">register</code> function works very similarly to our <code ng-non-bindable="">login</code> function. We want to set <code ng-non-bindable="">error</code> on the controller if <code ng-non-bindable="">$createUser</code> fails, however, when <code ng-non-bindable="">$createUser</code> succeeds, it doesn't automatically log in the user that was just created so we'll need to call the <code ng-non-bindable="">login</code> function we just created to log the user in. Now that we have our authentication service and controller created, let's update our templates and put them to use.</p>
+<checkbox id="include_auth_service_controller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/index.html</code><span class="ng-scope">, include the auth service and controller after where </span><code ng-non-bindable="" class="ng-scope">app.js</code><span class="ng-scope"> is included.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"app.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"auth/auth.controller.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"auth/auth.service.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<checkbox id="specify_login_register_controller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/app.js</code><span class="ng-scope">, specify </span><code ng-non-bindable="" class="ng-scope">AuthCtrl</code><span class="ng-scope"> as our controller for both the </span><code ng-non-bindable="" class="ng-scope">login</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">register</code><span class="ng-scope"> states.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">.state(<span class="hljs-symbol">'login'</span>, {
+  url: <span class="hljs-char">'/login'</span>,
+  controller: <span class="hljs-symbol">'AuthCtrl</span> <span class="hljs-keyword">as</span> authCtrl',
+  templateUrl: <span class="hljs-symbol">'auth</span>/login.html'
+})
+.state(<span class="hljs-symbol">'register'</span>, {
+  url: <span class="hljs-char">'/register'</span>,
+  controller: <span class="hljs-symbol">'AuthCtrl</span> <span class="hljs-keyword">as</span> authCtrl',
+  templateUrl: <span class="hljs-symbol">'auth</span>/register.html'
+})
+</code></pre>
+<checkbox id="register_ngsubmit" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/auth/register.html</code><span class="ng-scope">, add </span><code ng-non-bindable="" class="ng-scope">ng-submit</code><span class="ng-scope"> to the form and specify </span><code ng-non-bindable="" class="ng-scope">authCtrl.register()</code><span class="ng-scope"> as the submit function.
+</span></div></div></checkbox>
+<checkbox id="register_ngmodel_email" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add </span><code ng-non-bindable="" class="ng-scope">ng-model="authCtrl.user.email"</code><span class="ng-scope"> to the email input.
+</span></div></div></checkbox>
+<checkbox id="register_ngmodel_password" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add </span><code ng-non-bindable="" class="ng-scope">ng-model="authCtrl.user.password"</code><span class="ng-scope"> to the password input.
+</span></div></div></checkbox>
+<p ng-non-bindable="">The resulting form should look like this:</p>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;form ng-submit=<span class="hljs-string">"authCtrl.register()"</span>&gt;
+  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"input-group"</span>&gt;
+    &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"email"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"form-control"</span> placeholder=<span class="hljs-string">"Email"</span> ng-model=<span class="hljs-string">"authCtrl.user.email"</span>&gt;
+  &lt;/div&gt;
+  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"input-group"</span>&gt;
+    &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"password"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"form-control"</span> placeholder=<span class="hljs-string">"Password"</span> ng-model=<span class="hljs-string">"authCtrl.user.password"</span>&gt;
+  &lt;/div&gt;
+  &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"submit"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"btn btn-default"</span> value=<span class="hljs-string">"Register"</span>&gt;
+&lt;/form&gt;
+</code></pre>
+<checkbox id="register_error_div" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Finally, add the following </span><code ng-non-bindable="" class="ng-scope">div</code><span class="ng-scope"> just above the form:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">"authCtrl.error"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span></span><span class="hljs-expression">{{ <span class="hljs-variable">authCtrl.error.message</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+</code></pre>
+<p ng-non-bindable="">This div will remain hidden until our authentication controller reaches an error, in which case the error message it will get displayed to our user. Next, let's update our login template in a similar fashion.</p>
+<checkbox id="login_ngsubmit" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/auth/login.html</code><span class="ng-scope">, add </span><code ng-non-bindable="" class="ng-scope">ng-submit="authCtrl.login()"</code><span class="ng-scope"> to the form.
+</span></div></div></checkbox>
+<checkbox id="login_ngmodel_email" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add </span><code ng-non-bindable="" class="ng-scope">ng-model="authCtrl.user.email"</code><span class="ng-scope"> to the email input.
+</span></div></div></checkbox>
+<checkbox id="login_ngmodel_password" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add </span><code ng-non-bindable="" class="ng-scope">ng-model="authCtrl.user.password"</code><span class="ng-scope"> to the password input.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;form ng-submit=<span class="hljs-string">"authCtrl.login()"</span>&gt;
+  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"input-group"</span>&gt;
+    &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"email"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"form-control"</span> placeholder=<span class="hljs-string">"Email"</span> ng-model=<span class="hljs-string">"authCtrl.user.email"</span>&gt;
+  &lt;/div&gt;
+  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"input-group"</span>&gt;
+    &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"password"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"form-control"</span> placeholder=<span class="hljs-string">"Password"</span> ng-model=<span class="hljs-string">"authCtrl.user.password"</span>&gt;
+  &lt;/div&gt;
+  &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"submit"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"btn btn-default"</span> value=<span class="hljs-string">"Log In"</span>&gt;
+&lt;/form&gt;
+</code></pre>
+<checkbox id="login_error_div" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Finally, add the same </span><code ng-non-bindable="" class="ng-scope">div</code><span class="ng-scope"> that we did for the register view just above the form for error handling:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">ng-show</span>=<span class="hljs-value">"authCtrl.error"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">span</span>&gt;</span></span><span class="hljs-expression">{{ <span class="hljs-variable">authCtrl.error.message</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+</code></pre>
+<p ng-non-bindable="">Now we should have a working register and login system, but we have no way of telling if the user is logged in or not. The login and registration pages are still accessible if we are authenticated. We can resolve this by using the <code ng-non-bindable="">resolve</code> property on our states. <code ng-non-bindable="">resolve</code> allows us to create dependencies that can be injected into controllers or child states. These dependencies can depend on services in our app that return promises, and the promises will get resolved before our controller gets instantiated. Read the <a href="https://github.com/angular-ui/ui-router/wiki#resolve" target="_blank">ui-router Github Wiki</a> if you're not familiar with how <code ng-non-bindable="">resolve</code> works with <code ng-non-bindable="">ui-router</code>.</p>
+<checkbox id="login_register_resolve" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add the following resolve property to both the </span><code ng-non-bindable="" class="ng-scope">login</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">register</code><span class="ng-scope"> state:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">resolve: {
+  requireNoAuth: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$state</span>, Auth)</span></span>{
+    <span class="hljs-keyword">return</span> Auth.<span class="hljs-variable">$requireAuth</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(auth)</span></span>{
+      <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'home'</span>);
+    }, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span></span>{
+      <span class="hljs-keyword">return</span>;
+    });
+  }
+}
+</code></pre>
+<p ng-non-bindable="">The <code ng-non-bindable="">$firebaseAuth</code> service provides us with a <code ng-non-bindable="">$requireAuth</code> function which returns a promise. This promise will get resolved with an <code ng-non-bindable="">auth</code> object if the user is logged in. The <a href="https://www.firebase.com/docs/web/guide/login/password.html#section-logging-in" target="_blank">Firebase Documentation</a> provides a table of what information is available to us within <code ng-non-bindable="">auth</code>. If the user is not authenticated, the promise gets rejected. In our <code ng-non-bindable="">requireNoAuth</code> dependency, if the User is logged in we want to send them back to the <code ng-non-bindable="">home</code> state, otherwise, we need to catch the error that gets thrown and handle it gracefully by returning nothing, allowing the promise to be resolved instead of rejected. Now, we should no longer be able to access the login or register states if we're authenticated.</p>
+</div>
+<div class="course-section ng-scope" id="storing-user-profiles-in-firebase">
+<h1>Storing User Profiles in Firebase <a href="https://thinkster.io/angularfire-slack-tutorial/#storing-user-profiles-in-firebase" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<screencast markdown-id="profileservice" title="undefined" thumbnail-url="https://embed-ssl.wistia.com/deliveries/a623822b86dc4db6e43ad3f48e3ec82076863d07.jpg?image_crop_resized=100x60" class="ng-isolate-scope"><div class="video-box"><!-- ngIf: ::!sc.isPro --><div ng-if="::!sc.isPro" class="cover-image ng-scope" ng-click="sc.openModal()" ng-style="::sc.coverImageStyle" tabindex="0" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)) , url(https://embed-ssl.wistia.com/deliveries/a623822b86dc4db6e43ad3f48e3ec82076863d07.jpg) 50% 50% no-repeat;"><div class="fake-play-button" alt="Play Button - click to play" style=""></div></div><!-- end ngIf: ::!sc.isPro --><!-- ngIf: ::sc.isPro --></div></screencast>
+<p ng-non-bindable="">Now that we're able to authenticate users, let's create the ability for users to have custom display names to use in our app (rather than showing the user's email or uid)</p>
+<checkbox id="Create_users_service" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a factory </span><code ng-non-bindable="" class="ng-scope">Users</code><span class="ng-scope"> in </span><code ng-non-bindable="" class="ng-scope">app/users/users.service.js</code><span class="ng-scope">. This factory will depend on </span><code ng-non-bindable="" class="ng-scope">$firebaseArray</code><span class="ng-scope">, </span><code ng-non-bindable="" class="ng-scope">$firebaseObject</code><span class="ng-scope">, and `FirebaseUrl;
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .factory(<span class="hljs-string">'Users'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$firebaseArray</span>, <span class="hljs-variable">$firebaseObject</span>, FirebaseUrl)</span></span>{
+
+    <span class="hljs-keyword">var</span> Users = {};
+
+    <span class="hljs-keyword">return</span> Users;
+  });
+</code></pre>
+<p ng-non-bindable="">The purpose of this factory is to provide us with the ability to get either a specific user's data, or to get a list of all of our users. Note that while Firebase provides us with a means of authentication, all of the authentication data is separate from our Firebase data and can't be queried. It is up to us to store any custom user data within Firebase manually.</p>
+<checkbox id="create_users_ref" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a reference to the </span><code ng-non-bindable="" class="ng-scope">users</code><span class="ng-scope"> node
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .factory(<span class="hljs-string">'Users'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$firebaseArray</span>, <span class="hljs-variable">$firebaseObject</span>, FirebaseUrl)</span></span>{
+    <span class="hljs-keyword">var</span> usersRef = <span class="hljs-keyword">new</span> Firebase(FirebaseUrl+<span class="hljs-string">'users'</span>);
+
+    <span class="hljs-keyword">var</span> Users = {};
+
+    <span class="hljs-keyword">return</span> Users;
+  });
+</code></pre>
+<p ng-non-bindable="">Data in Firebase is stored in a <a href="https://en.wikipedia.org/wiki/Tree_%28data_structure%29" target="_blank">tree structure</a> and child nodes can be referenced by adding a path to our <code ng-non-bindable="">FirebaseUrl</code>, so <code ng-non-bindable="">https://firebase-name-here.firebase.io.com/users</code> refers to the <code ng-non-bindable="">users</code> node.</p>
+<checkbox id="read_firebase_data" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Read the Firebase documentation on </span><a href="https://www.firebase.com/docs/web/guide/understanding-data.html" target="_blank" class="ng-scope">understanding data</a><span class="ng-scope"> to learn about how data is stored in Firebase, along with the limitations and restrictions.
+</span></div></div></checkbox>
+<checkbox id="create_users_array" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a </span><code ng-non-bindable="" class="ng-scope">$firebaseArray</code><span class="ng-scope"> using the reference we just created.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .factory(<span class="hljs-string">'Users'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$firebaseArray</span>, <span class="hljs-variable">$firebaseObject</span>, FirebaseUrl)</span></span>{
+    <span class="hljs-keyword">var</span> usersRef = <span class="hljs-keyword">new</span> Firebase(FirebaseUrl+<span class="hljs-string">'users'</span>);
+    <span class="hljs-keyword">var</span> users = <span class="hljs-variable">$firebaseArray</span>(usersRef);
+
+    <span class="hljs-keyword">var</span> Users = {};
+
+    <span class="hljs-keyword">return</span> Users;
+  });
+</code></pre>
+<p ng-non-bindable="">It's also good to know that while <code ng-non-bindable="">$firebaseArray</code> will return pseudo array, meaning it will act a lot like an array in javascript, however, methods like <code ng-non-bindable="">splice()</code>, <code ng-non-bindable="">push()</code>, <code ng-non-bindable="">pop()</code> will only affect data locally and not on the Firebase. Instead, <code ng-non-bindable="">$firebaseArray</code> provides methods named <code ng-non-bindable="">$add</code> and <code ng-non-bindable="">$remove</code> to provide similar functionality while keeping your data in sync. Read the <a href="https://www.firebase.com/docs/web/libraries/angular/api.html#angularfire-firebasearray" target="_blank">$firebaseArray Documentation</a> For a complete understanding of how <code ng-non-bindable="">$firebaseArray</code> should be used.</p>
+<checkbox id="create_Users_object" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">Users</code><span class="ng-scope"> to the following object:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-keyword">var</span> Users = {
+  getProfile: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(uid)</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$firebaseObject</span>(usersRef.child(uid));
+  },
+  getDisplayName: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(uid)</span></span>{
+    <span class="hljs-keyword">return</span> users.<span class="hljs-variable">$getRecord</span>(uid).displayName;
+  },
+  all: users
+};
+</code></pre>
+<p ng-non-bindable=""><code ng-non-bindable="">getProfile(uid)</code> allows us to get a <code ng-non-bindable="">$firebaseObject</code> of a specific user's profile, while <code ng-non-bindable="">all</code> returns a <code ng-non-bindable="">$firebaseArray</code> of all the users. <code ng-non-bindable="">getDisplayName(uid)</code> is a helper function that returns a user's <code ng-non-bindable="">displayName</code> when given a <code ng-non-bindable="">uid</code>. We will be keying our data by the <code ng-non-bindable="">uid</code> that comes back from our Firebase auth data, so data in our Firebase will look similar to:</p>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">{
+  "<span class="hljs-attribute">users</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">simplelogin:1</span>":<span class="hljs-value">{
+      "<span class="hljs-attribute">displayName</span>": <span class="hljs-value"><span class="hljs-string">"Blake Jackson"</span>
+    </span>}
+  </span>}
+</span>}
+</code></pre>
+<p ng-non-bindable="">Now that our <code ng-non-bindable="">Users</code> service is created, let's create a controller for updating a user's profile. First we'll need to create a new state in <code ng-non-bindable="">app/app.js</code> to <code ng-non-bindable="">resolve</code> a couple dependencies. We want to have the user's <code ng-non-bindable="">auth</code> data and their profile available to us before our controller is instantiated.</p>
+<checkbox id="create_profile_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a new state for profile:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">.state(<span class="hljs-string">'profile'</span>, {
+  url: <span class="hljs-string">'/profile'</span>,
+  resolve: {
+    auth: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$state</span>, Users, Auth)</span></span>{
+      <span class="hljs-keyword">return</span> Auth.<span class="hljs-variable">$requireAuth</span>().<span class="hljs-keyword">catch</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'home'</span>);
+      });
+    },
+    profile: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(Users, Auth)</span></span>{
+      <span class="hljs-keyword">return</span> Auth.<span class="hljs-variable">$requireAuth</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(auth)</span></span>{
+        <span class="hljs-keyword">return</span> Users.getProfile(auth.uid).<span class="hljs-variable">$loaded</span>();
+      });
+    }
+  }
+})
+</code></pre>
+<p ng-non-bindable="">We left the <code ng-non-bindable="">controller</code> and <code ng-non-bindable="">templateUrl</code> properties out of the state configuration temporarily because we haven't created them yet. The <code ng-non-bindable="">auth</code> dependency is similar to the <code ng-non-bindable="">requireNoAuth</code> dependency we created for <code ng-non-bindable="">login</code> and <code ng-non-bindable="">register</code>, except it does the inverse, where the user is redirected to the <code ng-non-bindable="">home</code> state if they're not authenticated. The <code ng-non-bindable="">.catch</code> function is a shorthand for handling promises if we don't want to provide a success handler. The <code ng-non-bindable="">profile</code> dependency also ensures authentication, but resolves to the user's profile using the <code ng-non-bindable="">getProfile</code> function we created in our <code ng-non-bindable="">Users</code> service. <code ng-non-bindable="">$loaded</code> is a function provided by both <code ng-non-bindable="">$firebaseObject</code> and <code ng-non-bindable="">$firebaseArray</code> that returns a promise that gets resolved when the data from Firebase is available locally.</p>
+<checkbox id="create_profile_controller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create </span><code ng-non-bindable="" class="ng-scope">ProfileCtrl</code><span class="ng-scope"> in </span><code ng-non-bindable="" class="ng-scope">app/users/profile.controller.js</code><span class="ng-scope">, injecting </span><code ng-non-bindable="" class="ng-scope">$state</code><span class="ng-scope">, </span><code ng-non-bindable="" class="ng-scope">md5</code><span class="ng-scope">, </span><code ng-non-bindable="" class="ng-scope">auth</code><span class="ng-scope">, and </span><code ng-non-bindable="" class="ng-scope">profile</code>
+</div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .controller(<span class="hljs-string">'ProfileCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($state, md5, auth, profile)</span></span>{
+    <span class="hljs-keyword">var</span> profileCtrl = <span class="hljs-keyword">this</span>;
+  });
+</code></pre>
+<p ng-non-bindable="">We'll be using <a href="https://en.gravatar.com/" target="_blank">Gravatar</a> to get profile picture functionality in our application. Gravatar is a service that provides us with a user's profile picture when given an email, however the email needs to be <a href="https://en.wikipedia.org/wiki/MD5" target="_blank">md5 hashed</a>. Luckily, there are many modules available that can do this for us, and <a href="https://github.com/gdi2290/angular-md5" target="_blank">angular-md5</a> was already included in our seed codebase.</p>
+<checkbox id="set_profilectrl_profile" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">profile</code><span class="ng-scope"> on the controller to the one that was resolved by the router
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-keyword">profile</span>Ctrl.<span class="hljs-keyword">profile</span> = <span class="hljs-keyword">profile</span>;
+</code></pre>
+<checkbox id="create_updateprofile" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the following </span><code ng-non-bindable="" class="ng-scope">updateProfile</code><span class="ng-scope"> function on our controller:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-keyword">profile</span>Ctrl.updateProfile = function(){
+  <span class="hljs-keyword">profile</span>Ctrl.<span class="hljs-keyword">profile</span>.emailHash = md5.createHash(auth.password.email);
+  <span class="hljs-keyword">profile</span>Ctrl.<span class="hljs-keyword">profile</span>.<span class="hljs-variable">$save</span>();
+};
+</code></pre>
+<p ng-non-bindable="">Here we're getting the current user's email from the <code ng-non-bindable="">auth</code> data that was resolved from our router, hashing it and setting to <code ng-non-bindable="">emailHash</code> on <code ng-non-bindable="">profile</code>. <code ng-non-bindable="">displayName</code> will be set from the template we'll be creating next using <code ng-non-bindable="">ng-model</code>.</p>
+<checkbox id="create" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add a helper function </span><code ng-non-bindable="" class="ng-scope">getGravatar</code><span class="ng-scope"> to the </span><code ng-non-bindable="" class="ng-scope">Users</code><span class="ng-scope"> service that will return the url to a user's gravatar image when provided a </span><code ng-non-bindable="" class="ng-scope">uid</code><span class="ng-scope">.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-rule"><span class="hljs-attribute">getGravatar</span>:<span class="hljs-value"> <span class="hljs-function">function</span>(uid){
+  return <span class="hljs-string">'//www.gravatar.com/avatar/'</span> + users.$<span class="hljs-function">getRecord</span>(uid).emailHash</span></span>;
+},
+</code></pre>
+<checkbox id="include_user_service_profile_contoller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/index.html</code><span class="ng-scope">, include the user service and profile controller
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"auth/auth.service.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"users/users.service.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"users/profile.controller.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<checkbox id="set_profile_state_template_controller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">controller</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">templateUrl</code><span class="ng-scope"> in the </span><code ng-non-bindable="" class="ng-scope">profile</code><span class="ng-scope"> state to the following:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-string">url:</span> <span class="hljs-string">'/profile'</span>,
+<span class="hljs-string">controller:</span> <span class="hljs-string">'ProfileCtrl as profileCtrl'</span>,
+<span class="hljs-string">templateUrl:</span> <span class="hljs-string">'users/profile.html'</span>,
+</code></pre>
+<checkbox id="create_profile_html" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the edit profile template in </span><code ng-non-bindable="" class="ng-scope">users/profile.html</code><span class="ng-scope"> with the following code:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"page-wrapper"</span>&gt;
+
+  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"page-header"</span>&gt;
+    &lt;h1&gt;<span class="hljs-type">Edit</span> <span class="hljs-type">Profile</span>&lt;/h1&gt;
+  &lt;/div&gt;
+
+  &lt;form ng-submit=<span class="hljs-string">"profileCtrl.updateProfile()"</span>&gt;
+    &lt;p ng-hide=<span class="hljs-string">"profileCtrl.profile.displayName"</span>&gt;
+      <span class="hljs-type">You</span><span class="hljs-symbol">'ll</span> need a display name before you can start chatting.
+    &lt;/p&gt;
+
+    &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"input-group"</span>&gt;
+      &lt;input required <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"text"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"form-control"</span> placeholder=<span class="hljs-string">"Display Name"</span> ng-model=<span class="hljs-string">"profileCtrl.profile.displayName"</span>&gt;
+    &lt;/div&gt;
+    &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"submit"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"btn btn-default"</span> value=<span class="hljs-string">"Set Display Name"</span>&gt;
+  &lt;/form&gt;
+
+&lt;/div&gt;
+</code></pre>
+<p ng-non-bindable="">We should now be able to navigate to <code ng-non-bindable="">http://localhost:4000/#/profile</code>, specify a display name for our user, submit the form and it should persist when we refresh the page.</p>
+</div>
+<div class="course-section ng-scope" id="creating-the-channels-sidebar">
+<h1>Creating the Channels Sidebar <a href="https://thinkster.io/angularfire-slack-tutorial/#creating-the-channels-sidebar" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<screencast markdown-id="channels" title="undefined" thumbnail-url="https://embed-ssl.wistia.com/deliveries/3b2e9e79437cd8c26ed31ded9425c140f5c2022d.jpg?image_crop_resized=100x60" class="ng-isolate-scope"><div class="video-box"><!-- ngIf: ::!sc.isPro --><div ng-if="::!sc.isPro" class="cover-image ng-scope" ng-click="sc.openModal()" ng-style="::sc.coverImageStyle" tabindex="0" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)) , url(https://embed-ssl.wistia.com/deliveries/3b2e9e79437cd8c26ed31ded9425c140f5c2022d.jpg) 50% 50% no-repeat;"><div class="fake-play-button" alt="Play Button - click to play" style=""></div></div><!-- end ngIf: ::!sc.isPro --><!-- ngIf: ::sc.isPro --></div></screencast>
+<p ng-non-bindable="">Now that our Users can authenticate and have profiles, we can finally start to create the functionality for Channels. We're going to start by creating the left sidebar for listing channels and display the current user's profile.</p>
+<checkbox id="create_channels_service" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a service </span><code ng-non-bindable="" class="ng-scope">Channels</code><span class="ng-scope"> in </span><code ng-non-bindable="" class="ng-scope">app/channels/channels.service.js</code><span class="ng-scope"> that will return a </span><code ng-non-bindable="" class="ng-scope">$firebaseArray</code><span class="ng-scope"> at the </span><code ng-non-bindable="" class="ng-scope">channels</code><span class="ng-scope"> node.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module('angularfireSlackApp')
+  .factory('<span class="hljs-type">Channels</span>', function($firebaseArray, <span class="hljs-type">FirebaseUrl</span>){
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">ref</span> = new <span class="hljs-type">Firebase</span>(<span class="hljs-type">FirebaseUrl</span>+'channels');
+    <span class="hljs-keyword">var</span> channels = $firebaseArray(<span class="hljs-keyword">ref</span>);
+
+    <span class="hljs-keyword">return</span> channels;
+  });
+</code></pre>
+<checkbox id="create_channels_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a state for </span><code ng-non-bindable="" class="ng-scope">channels</code><span class="ng-scope"> with the following code:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">.state(<span class="hljs-string">'channels'</span>, {
+  url: <span class="hljs-string">'/channels'</span>,
+  resolve: {
+    channels: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(Channels)</span></span>{
+      <span class="hljs-keyword">return</span> Channels.<span class="hljs-variable">$loaded</span>();
+    },
+    profile: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(<span class="hljs-variable">$state</span>, Auth, Users)</span></span>{
+      <span class="hljs-keyword">return</span> Auth.<span class="hljs-variable">$requireAuth</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(auth)</span></span>{
+        <span class="hljs-keyword">return</span> Users.getProfile(auth.uid).<span class="hljs-variable">$loaded</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(profile)</span></span>{
+          <span class="hljs-keyword">if</span>(profile.displayName){
+            <span class="hljs-keyword">return</span> profile;
+          } <span class="hljs-keyword">else</span> {
+            <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'profile'</span>);
+          }
+        });
+      }, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span></span>{
+        <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'home'</span>);
+      });
+    }
+  }
+})
+</code></pre>
+<p ng-non-bindable=""><code ng-non-bindable="">templateUrl</code> and <code ng-non-bindable="">controller</code> are temporarily omitted since we haven't created them yet. We're resolving two dependencies here: <code ng-non-bindable="">channels</code>, which is promising our <code ng-non-bindable="">$firebaseArray</code> of channels, and <code ng-non-bindable="">profile</code>, which is a lot like the <code ng-non-bindable="">profile</code> dependency in the <code ng-non-bindable="">profile</code> state, but we're ensuring that the user already a displayName set, otherwise they're taken to the <code ng-non-bindable="">profile</code> state, and if they're not authenticated, they get sent to the <code ng-non-bindable="">home</code> state.</p>
+<checkbox id="create_channels_controller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create </span><code ng-non-bindable="" class="ng-scope">ChannelsCtrl</code><span class="ng-scope"> in </span><code ng-non-bindable="" class="ng-scope">app/channels/channels.controller.js</code><span class="ng-scope">, injecting </span><code ng-non-bindable="" class="ng-scope">$state</code><span class="ng-scope">, </span><code ng-non-bindable="" class="ng-scope">Auth</code><span class="ng-scope">, </span><code ng-non-bindable="" class="ng-scope">profile</code><span class="ng-scope">, and </span><code ng-non-bindable="" class="ng-scope">channels</code><span class="ng-scope">.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .controller(<span class="hljs-string">'ChannelsCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($state, Auth, Users, profile, channels)</span></span>{
+    <span class="hljs-keyword">var</span> channelsCtrl = <span class="hljs-keyword">this</span>;
+  });
+</code></pre>
+<checkbox id="set_channelsctrl_profile_channel" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">channels</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">profile</code><span class="ng-scope"> to the resolved dependencies from the router
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">channelsCtrl.<span class="hljs-variable">profile =</span> profile;
+channelsCtrl.<span class="hljs-variable">channels =</span> channels;
+</code></pre>
+<checkbox id="set_channelsctrl_helper_functions" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">getDisplayName</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">getGravatar</code><span class="ng-scope"> to the respective functions on the </span><code ng-non-bindable="" class="ng-scope">Users</code><span class="ng-scope"> service.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">channelsCtrl.<span class="hljs-variable">getDisplayName =</span> Users.getDisplayName;
+channelsCtrl.<span class="hljs-variable">getGravatar =</span> Users.getGravatar;
+</code></pre>
+<checkbox id="create_logout_function" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a </span><code ng-non-bindable="" class="ng-scope">logout</code><span class="ng-scope"> function that will allow our users to log out, returning them to the </span><code ng-non-bindable="" class="ng-scope">home</code><span class="ng-scope"> state.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">channelsCtrl.logout = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  Auth.<span class="hljs-variable">$unauth</span>();
+  <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'home'</span>);
+};
+</code></pre>
+<checkbox id="include_rooms_service_controller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/index.html</code><span class="ng-scope">, include the channels service and controller
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"users/profile.controller.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"channels/channels.controller.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"channels/channels.service.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<checkbox id="sidebar_markup" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the template for our channels sidebar in </span><code ng-non-bindable="" class="ng-scope">app/channels/index.html</code><span class="ng-scope"> with the following code:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"main"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"sidebar"</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"slack-name"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">h2</span>&gt;</span>FireSlack<span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"channel-list"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"list-head"</span>&gt;</span>Channels<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"my-info"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"user-pic"</span> <span class="hljs-attribute">ng-src</span>=<span class="hljs-value">"</span></span></span><span class="hljs-expression">{{ <span class="hljs-variable">channelsCtrl.getGravatar</span>(<span class="hljs-variable">channelsCtrl.profile.</span>$<span class="hljs-variable">id</span>) }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-value">"</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"user-info"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"user-name"</span>&gt;</span>
+          </span><span class="hljs-expression">{{ <span class="hljs-variable">channelsCtrl.profile.displayName</span> }}</span><span class="xml">
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+        <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"options"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ui-sref</span>=<span class="hljs-value">"profile"</span>&gt;</span>edit profile<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+          /
+          <span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">href</span>=<span class="hljs-value">"#"</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"channelsCtrl.logout()"</span>&gt;</span>logout<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span></span>
+</code></pre>
+<checkbox id="update_channels_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set the </span><code ng-non-bindable="" class="ng-scope">controller</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">templateUrl</code><span class="ng-scope"> in </span><code ng-non-bindable="" class="ng-scope">channels</code><span class="ng-scope"> state to the following:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-string">url:</span> <span class="hljs-string">'/channels'</span>,
+<span class="hljs-string">controller:</span> <span class="hljs-string">'ChannelsCtrl as channelsCtrl'</span>,
+<span class="hljs-string">templateUrl:</span> <span class="hljs-string">'channels/index.html'</span>,
+</code></pre>
+<checkbox id="home_state_requrienoauth" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add the following </span><code ng-non-bindable="" class="ng-scope">resolve</code><span class="ng-scope"> to the </span><code ng-non-bindable="" class="ng-scope">home</code><span class="ng-scope"> state:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">resolve: {
+  requireNoAuth: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$state</span>, Auth)</span></span>{
+    <span class="hljs-keyword">return</span> Auth.<span class="hljs-variable">$requireAuth</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(auth)</span></span>{
+      <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'channels'</span>);
+    }, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(error)</span></span>{
+      <span class="hljs-keyword">return</span>;
+    });
+  }
+}
+</code></pre>
+<checkbox id="updateprofile_go_channels" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Update the </span><code ng-non-bindable="" class="ng-scope">updateProfile</code><span class="ng-scope"> function in </span><code ng-non-bindable="" class="ng-scope">ProfileCtrl</code><span class="ng-scope"> to send the user to the </span><code ng-non-bindable="" class="ng-scope">channels</code><span class="ng-scope"> state after a successful save.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">profileCtrl.updateProfile = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  profileCtrl.profile.emailHash = md5.createHash(auth.password.email);
+  profileCtrl.profile.<span class="hljs-variable">$save</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'channels'</span>);
+  });
+};
+</code></pre>
+<p ng-non-bindable="">This <code ng-non-bindable="">requireNoAuth</code> dependency is a lot like the one on <code ng-non-bindable="">login</code> and <code ng-non-bindable="">register</code> but it sends the user to the <code ng-non-bindable="">channels</code> state. If you want, you can change the <code ng-non-bindable="">requireNoAuth</code> dependency on <code ng-non-bindable="">login</code> and <code ng-non-bindable="">register</code> to also send the user to the <code ng-non-bindable="">channels</code> state as well. Now when we're logged in and visit <code ng-non-bindable="">http://localhost:4000</code> we should be sent to the <code ng-non-bindable="">channels</code> state. In that state, we can see the sidebar we just created for our application. There should be the logged in user's name and Gravatar at the bottom of the sidebar, and an edit profile and logout link next to it. We're using the <code ng-non-bindable="">ui-sref</code> directive that comes with <code ng-non-bindable="">ui-router</code> to specify what state we should navigate to on click. If we click on edit profile, we can update the user's <code ng-non-bindable="">displayName</code> and it should send us back to the <code ng-non-bindable="">channels</code> state when we submit the form. The logout link should log us out and send us back to the <code ng-non-bindable="">home</code> state. Now let's create the view to create channels.</p>
+<checkbox id="create_channels_create_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a new state </span><code ng-non-bindable="" class="ng-scope">channels.create</code><span class="ng-scope">:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-class">.state</span>(<span class="hljs-string">'channels.create'</span>, {
+  <span class="hljs-attribute">url</span>: <span class="hljs-string">'/create'</span>,
+  <span class="hljs-attribute">templateUrl</span>: <span class="hljs-string">'channels/create.html'</span>,
+  <span class="hljs-attribute">controller</span>: <span class="hljs-string">'ChannelsCtrl as channelsCtrl'</span>
+})
+</code></pre>
+<p ng-non-bindable="">This state is a child state of the <code ng-non-bindable="">channels</code> controller (the dot notation in the state name specifies <code ng-non-bindable="">parentState.childState</code>). This state will also use <code ng-non-bindable="">ChannelsCtrl</code>. We'll want to render our child states to the right of the sidebar. We need to declare another <code ng-non-bindable="">ui-view</code> tag in order for our child states to appear. You can read more about <code ng-non-bindable="">ui-router</code>'s nested states at this <a href="https://github.com/angular-ui/ui-router/wiki/Nested-States-and-Nested-Views" target="_blank">Github Wiki</a>.</p>
+<checkbox id="add_ui_view" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add the </span><code ng-non-bindable="" class="ng-scope">message-pane</code><span class="ng-scope"> div with a </span><code ng-non-bindable="" class="ng-scope">ui-view</code><span class="ng-scope"> tag in </span><code ng-non-bindable="" class="ng-scope">app/channels/index.html</code><span class="ng-scope">. This should be at the end of the </span><code ng-non-bindable="" class="ng-scope">main</code><span class="ng-scope"> div after the </span><code ng-non-bindable="" class="ng-scope">sidebar</code><span class="ng-scope"> div.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-pane"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ui-view</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">ui-view</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+</code></pre>
+<checkbox id="create_channelsctrl_newchannel" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add a </span><code ng-non-bindable="" class="ng-scope">newChannel</code><span class="ng-scope"> object on </span><code ng-non-bindable="" class="ng-scope">ChannelsCtrl</code><span class="ng-scope"> with a blank name
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-filename">channelsCtrl.newChannel = {
+  name</span>: <span class="hljs-string">''</span>
+};
+</code></pre>
+<checkbox id="create_channelsctrl_createchannel" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a </span><code ng-non-bindable="" class="ng-scope">createChannel</code><span class="ng-scope"> function on </span><code ng-non-bindable="" class="ng-scope">ChannelsCtrl</code><span class="ng-scope">.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">channelsCtrl.createChannel = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  channelsCtrl.channels.$add(channelsCtrl.newChannel).<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    channelsCtrl.newChannel = {
+      <span class="hljs-keyword">name</span>: <span class="hljs-string">''</span>
+    };
+  });
+};
+</code></pre>
+<p ng-non-bindable="">The <code ng-non-bindable="">$add</code> function on the channels <code ng-non-bindable="">$firebaseArray</code> provides similar functionality to the <code ng-non-bindable="">.push()</code> function on a Javascript <code ng-non-bindable="">Array</code>, but keeps our data in sync with Firebase, while returning a promise. Once the new channel is created we'll need to clear out the <code ng-non-bindable="">newChannel</code> object.</p>
+<checkbox id="create_createchannel_html" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the a form in </span><code ng-non-bindable="" class="ng-scope">app/channels/create.html</code><span class="ng-scope"> for creating a new channel
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"header"</span>&gt;
+  &lt;h1&gt;<span class="hljs-type">Create</span> a channel&lt;/h1&gt;
+&lt;/div&gt;
+
+&lt;form ng-submit=<span class="hljs-string">"channelsCtrl.createChannel()"</span>&gt;
+  &lt;div <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"input-group"</span>&gt;
+    &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"text"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"form-control"</span> placeholder=<span class="hljs-string">"Channel Name"</span> ng-model=<span class="hljs-string">"channelsCtrl.newChannel.name"</span>&gt;
+  &lt;/div&gt;
+  &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span>=</span><span class="hljs-string">"submit"</span> <span class="hljs-class"><span class="hljs-keyword">class</span>=</span><span class="hljs-string">"btn btn-default"</span> value=<span class="hljs-string">"Create Channel"</span>&gt;
+&lt;/form&gt;
+</code></pre>
+<checkbox id="channel_list_markup" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the channels listing in </span><code ng-non-bindable="" class="ng-scope">app/channels/index.html</code><span class="ng-scope"> using the following markup in the </span><code ng-non-bindable="" class="ng-scope">channel-list</code><span class="ng-scope"> div below the </span><code ng-non-bindable="" class="ng-scope">list-head</code><span class="ng-scope"> div:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"channel-list"</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"list-head"</span>&gt;Channels&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"channel"</span> ng-<span class="hljs-keyword">repeat</span>=<span class="hljs-string">"channel in channelsCtrl.channels"</span>&gt;
+    &lt;a&gt;<span class="hljs-comment"># {{ channel.name }}&lt;/a&gt;</span>
+  &lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</code></pre>
+<p ng-non-bindable="">We're using the <code ng-non-bindable="">ng-repeat</code> directive to iterate over our array of <code ng-non-bindable="">channels</code>.</p>
+<checkbox id="channel_create_link" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a link to the </span><code ng-non-bindable="" class="ng-scope">channels.create</code><span class="ng-scope"> state below the channel listing:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"channel-list"</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"list-head"</span>&gt;Channels&lt;/<span class="hljs-keyword">div</span>&gt;
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"channel"</span> ng-<span class="hljs-keyword">repeat</span>=<span class="hljs-string">"channel in channelsCtrl.channels"</span>&gt;
+    &lt;a&gt;<span class="hljs-comment"># {{ channel.name }}&lt;/a&gt;</span>
+  &lt;/<span class="hljs-keyword">div</span>&gt;
+
+  &lt;<span class="hljs-keyword">div</span> <span class="hljs-type">class</span>=<span class="hljs-string">"channel create"</span>&gt;
+    &lt;a ui-sref=<span class="hljs-string">"channels.create"</span>&gt;+ create channel&lt;/a&gt;
+  &lt;/<span class="hljs-keyword">div</span>&gt;
+&lt;/<span class="hljs-keyword">div</span>&gt;
+</code></pre>
+<p ng-non-bindable="">We're now able to click on the create channel link and start creating channels!</p>
+</div>
+<div class="course-section ng-scope" id="adding-messaging-functionality">
+<h1>Adding Messaging Functionality <a href="https://thinkster.io/angularfire-slack-tutorial/#adding-messaging-functionality" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<screencast markdown-id="channelmessages" title="undefined" thumbnail-url="https://embed-ssl.wistia.com/deliveries/b502036749aa1d475285d7fa9147cb70d82291bf.jpg?image_crop_resized=100x60" class="ng-isolate-scope"><div class="video-box"><!-- ngIf: ::!sc.isPro --><div ng-if="::!sc.isPro" class="cover-image ng-scope" ng-click="sc.openModal()" ng-style="::sc.coverImageStyle" tabindex="0" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)) , url(https://embed-ssl.wistia.com/deliveries/b502036749aa1d475285d7fa9147cb70d82291bf.jpg) 50% 50% no-repeat;"><div class="fake-play-button" alt="Play Button - click to play" style=""></div></div><!-- end ngIf: ::!sc.isPro --><!-- ngIf: ::sc.isPro --></div></screencast>
+<checkbox id="create_messages_service" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a service for retrieving messages
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .factory(<span class="hljs-string">'Messages'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$firebaseArray</span>, FirebaseUrl)</span></span>{
+    <span class="hljs-keyword">var</span> channelMessagesRef = <span class="hljs-keyword">new</span> Firebase(FirebaseUrl+<span class="hljs-string">'channelMessages'</span>);
+
+    <span class="hljs-keyword">return</span> {
+      forChannel: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(channelId)</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable">$firebaseArray</span>(channelMessagesRef.child(channelId));
+      }
+    };
+  });
+</code></pre>
+<p ng-non-bindable="">The <code ng-non-bindable="">forChannel</code> function on our service returns a <code ng-non-bindable="">$firebaseArray</code> of messages when provided a <code ng-non-bindable="">channelId</code>. Later in this tutorial, we'll create a <code ng-non-bindable="">forUsers</code> function for retrieving direct messages.</p>
+<checkbox id="create_messages_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a new state </span><code ng-non-bindable="" class="ng-scope">channels.messages</code><span class="ng-scope"> with the following code:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">.state(<span class="hljs-string">'channels.messages'</span>, {
+  url: <span class="hljs-string">'/{channelId}/messages'</span>,
+  resolve: {
+    messages: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$stateParams</span>, Messages)</span></span>{
+      <span class="hljs-keyword">return</span> Messages.forChannel(<span class="hljs-variable">$stateParams</span>.channelId).<span class="hljs-variable">$loaded</span>();
+    },
+    channelName: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$stateParams</span>, channels)</span></span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-string">'#'</span>+channels.<span class="hljs-variable">$getRecord</span>(<span class="hljs-variable">$stateParams</span>.channelId).name;
+    }
+  }
+})
+</code></pre>
+<p ng-non-bindable="">This state will again be a child state of <code ng-non-bindable="">channels</code>. Our url will have a <code ng-non-bindable="">channelId</code> parameter. We can access this parameter with <code ng-non-bindable="">$stateParams</code>, provided by <code ng-non-bindable="">ui-router</code>. We're resolving <code ng-non-bindable="">messages</code>, which is using the <code ng-non-bindable="">forChannel</code> function from our <code ng-non-bindable="">Messages</code> service, and <code ng-non-bindable="">channelName</code> which we'll be using to display the channel's name in our messages pane. Channel names will be prefixed with a <code ng-non-bindable="">#</code>. The <code ng-non-bindable="">channels</code> dependency we're injecting is coming from the parent state <code ng-non-bindable="">channels</code> since child states inherit their parent's dependencies. We'll come back and add the <code ng-non-bindable="">controller</code> and <code ng-non-bindable="">templateUrl</code> properties once we create our controller and template.</p>
+<checkbox id="create_messagesctrl" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a new controller </span><code ng-non-bindable="" class="ng-scope">MessagesCtrl</code><span class="ng-scope"> in </span><code ng-non-bindable="" class="ng-scope">app/channels/messages.controller.js</code><span class="ng-scope">. We'll be injecting </span><code ng-non-bindable="" class="ng-scope">profile</code><span class="ng-scope">, </span><code ng-non-bindable="" class="ng-scope">channelName</code><span class="ng-scope">, and </span><code ng-non-bindable="" class="ng-scope">messages</code>
+</div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">angular.module(<span class="hljs-string">'angularfireSlackApp'</span>)
+  .controller(<span class="hljs-string">'MessagesCtrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(profile, channelName, messages)</span></span>{
+    <span class="hljs-keyword">var</span> messagesCtrl = <span class="hljs-keyword">this</span>;
+  });
+</code></pre>
+<p ng-non-bindable="">Again, the <code ng-non-bindable="">profile</code> dependency that we're injecting will actually come from the parent state <code ng-non-bindable="">channels</code> that resolves to the current user's profile.</p>
+<checkbox id="set_messages_channelname" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">messages</code><span class="ng-scope"> and </span><code ng-non-bindable="" class="ng-scope">channelName</code><span class="ng-scope"> on </span><code ng-non-bindable="" class="ng-scope">messagesCtrl</code><span class="ng-scope"> to the respective dependencies
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">messagesCtrl.<span class="hljs-variable">messages =</span> messages;
+messagesCtrl.<span class="hljs-variable">channelName =</span> channelName;
+</code></pre>
+<checkbox id="set_messagesctrl_messages" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">message</code><span class="ng-scope"> on </span><code ng-non-bindable="" class="ng-scope">messagesCtrl</code><span class="ng-scope"> to an empty string.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">messagesCtrl.<span class="hljs-keyword">message</span> = <span class="hljs-string">''</span>;
+</code></pre>
+<checkbox id="create_sendmessage" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a function </span><code ng-non-bindable="" class="ng-scope">sendMessage</code><span class="ng-scope"> to </span><code ng-non-bindable="" class="ng-scope">$add</code><span class="ng-scope"> a message to </span><code ng-non-bindable="" class="ng-scope">messages</code><span class="ng-scope">.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">messagesCtrl.sendMessage = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span>{
+  <span class="hljs-keyword">if</span>(messagesCtrl.message.length &gt; <span class="hljs-number">0</span>){
+    messagesCtrl.messages.<span class="hljs-variable">$add</span>({
+      uid: profile.<span class="hljs-variable">$id</span>,
+      body: messagesCtrl.message,
+      timestamp: Firebase.ServerValue.TIMESTAMP
+    }).then(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span>{
+      messagesCtrl.message = <span class="hljs-string">''</span>;
+    });
+  }
+};
+</code></pre>
+<p ng-non-bindable="">A message object will need to contain <code ng-non-bindable="">uid</code>, which will be how we identify who sent the message. <code ng-non-bindable="">body</code> contains the message our user input, and <code ng-non-bindable="">timestamp</code> is a constant from <code ng-non-bindable="">Firebase</code> that tells the Firebase servers to use the their clock for the timestamp. When a message sends successfully, we'll want to clear out <code ng-non-bindable="">messagesCtrl.message</code> so the user can type a new message.</p>
+<checkbox id="include_messages_service_controller" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/index.html</code><span class="ng-scope">, include our messages service and controller.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"channels/channels.service.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"channels/messages.service.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">script</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">"channels/messages.controller.js"</span>&gt;</span><span class="undefined"></span><span class="hljs-tag">&lt;/<span class="hljs-title">script</span>&gt;</span>
+</code></pre>
+<checkbox id="create_messages_markup" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create the following template in </span><code ng-non-bindable="" class="ng-scope">app/channels/messages.html</code><span class="ng-scope">:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"header"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">h1</span>&gt;</span></span><span class="hljs-expression">{{ <span class="hljs-variable">messagesCtrl.channelName</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-wrap"</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">"message in messagesCtrl.messages"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"user-pic"</span> <span class="hljs-attribute">ng-src</span>=<span class="hljs-value">"</span></span></span><span class="hljs-expression">{{ <span class="hljs-variable">channelsCtrl.getGravatar</span>(<span class="hljs-variable">message.uid</span>) }}</span><span class="xml"><span class="hljs-tag"><span class="hljs-value">"</span> /&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-info"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"user-name"</span>&gt;</span>
+      </span><span class="hljs-expression">{{ <span class="hljs-variable">channelsCtrl.getDisplayName</span>(<span class="hljs-variable">message.uid</span>) }}</span><span class="xml">
+      <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"timestamp"</span>&gt;</span></span><span class="hljs-expression">{{ <span class="hljs-variable">message.timestamp</span> | <span class="hljs-variable">date</span>:'<span class="hljs-variable">short</span>' }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message"</span>&gt;</span>
+     </span><span class="hljs-expression">{{ <span class="hljs-variable">message.body</span> }}</span><span class="xml">
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;<span class="hljs-title">form</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"message-form"</span> <span class="hljs-attribute">ng-submit</span>=<span class="hljs-value">"messagesCtrl.sendMessage()"</span>&gt;</span>
+
+  <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"input-group"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">input</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"text"</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"form-control"</span> <span class="hljs-attribute">ng-model</span>=<span class="hljs-value">"messagesCtrl.message"</span> <span class="hljs-attribute">placeholder</span>=<span class="hljs-value">"Type a message..."</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"input-group-btn"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"btn btn-default"</span> <span class="hljs-attribute">type</span>=<span class="hljs-value">"submit"</span>&gt;</span>Send<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+
+<span class="hljs-tag">&lt;/<span class="hljs-title">form</span>&gt;</span></span>
+</code></pre>
+<p ng-non-bindable="">Here we're creating a header to display the <code ng-non-bindable="">channelName</code> from our controller. Then we're <code ng-non-bindable="">ng-repeat</code>ing over <code ng-non-bindable="">messages</code> and using <code ng-non-bindable="">message.uid</code> and the helper functions from <code ng-non-bindable="">channelsCtrl</code> to get the user's display name and Gravatar. We're also using Angular's <code ng-non-bindable="">date</code> filter on the timestamp to display a short timestamp. Finally, at the bottom of our view we have the form for sending messages which submits to the <code ng-non-bindable="">sendMessage</code> function from our controller.</p>
+<checkbox id="update_messages_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Update the </span><code ng-non-bindable="" class="ng-scope">channels.messages</code><span class="ng-scope"> state to use the template and controller we just created.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-string">url:</span> <span class="hljs-string">'/{channelId}/messages'</span>,
+<span class="hljs-string">templateUrl:</span> <span class="hljs-string">'channels/messages.html'</span>,
+<span class="hljs-string">controller:</span> <span class="hljs-string">'MessagesCtrl as messagesCtrl'</span>,
+</code></pre>
+<checkbox id="add_channels_links" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Update the channel links in the sidebar so we can navigate to channels.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ui-sref</span>=<span class="hljs-value">"channels.messages({channelId: channel.$id})"</span> <span class="hljs-attribute">ui-sref-active</span>=<span class="hljs-value">"selected"</span>&gt;</span># </span><span class="hljs-expression">{{ <span class="hljs-variable">channel.name</span> }}</span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></span>
+</code></pre>
+<p ng-non-bindable="">We're specifying the parameters for the <code ng-non-bindable="">channels.messages</code> state within the <code ng-non-bindable="">ui-sref</code> directive. The <code ng-non-bindable="">ui-sref-active</code> directive will add the specified class (<code ng-non-bindable="">selected</code> in our case) to the element when a state specified in a sibling or child <code ng-non-bindable="">ui-sref</code> directive. Now we should be able to navigate between channels and start chatting!</p>
+<checkbox id="update_createchannel" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Update the </span><code ng-non-bindable="" class="ng-scope">createChannel</code><span class="ng-scope"> function to send the user to the newly created channel upon creation.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">channelsCtrl.createChannel = function(){
+  channelsCtrl.channels.$add(channelsCtrl.newChannel).then(function(<span class="hljs-keyword">ref</span>){
+    $state.go('channels.messages', {channelId: <span class="hljs-keyword">ref</span>.key()});
+  });
+};
+</code></pre>
+</div>
+<div class="course-section ng-scope" id="creating-direct-messages">
+<h1>Creating Direct Messages <a href="https://thinkster.io/angularfire-slack-tutorial/#creating-direct-messages" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<screencast markdown-id="directmessages" title="undefined" thumbnail-url="https://embed-ssl.wistia.com/deliveries/a0869189286833cea9601bb2134a51abd81a70a0.jpg?image_crop_resized=100x60" class="ng-isolate-scope"><div class="video-box"><!-- ngIf: ::!sc.isPro --><div ng-if="::!sc.isPro" class="cover-image ng-scope" ng-click="sc.openModal()" ng-style="::sc.coverImageStyle" tabindex="0" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)) , url(https://embed-ssl.wistia.com/deliveries/a0869189286833cea9601bb2134a51abd81a70a0.jpg) 50% 50% no-repeat;"><div class="fake-play-button" alt="Play Button - click to play" style=""></div></div><!-- end ngIf: ::!sc.isPro --><!-- ngIf: ::sc.isPro --></div></screencast>
+<p ng-non-bindable="">Now that we have working channels with messaging, adding direct messages will be easier since we can reuse a lot of the existing functionality we have.</p>
+<checkbox id="add_usermessages_ref" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In our </span><code ng-non-bindable="" class="ng-scope">Messages</code><span class="ng-scope"> service, add a Firebase reference to the </span><code ng-non-bindable="" class="ng-scope">userMessages</code><span class="ng-scope"> node.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">    <span class="hljs-tag">var</span> userMessagesRef = new <span class="hljs-function"><span class="hljs-title">Firebase</span><span class="hljs-params">(FirebaseUrl+<span class="hljs-string">'userMessages'</span>)</span></span>
+</code></pre>
+<checkbox id="add_messages_forusers" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add a </span><code ng-non-bindable="" class="ng-scope">forUsers</code><span class="ng-scope"> function to our </span><code ng-non-bindable="" class="ng-scope">Messages</code><span class="ng-scope"> service to retrieve direct messages between two users, given their uids.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-keyword">return</span> {
+  forChannel: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(channelId)</span></span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$firebaseArray</span>(channelMessagesRef.child(channelId));
+  },
+  forUsers: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(uid1, uid2)</span></span>{
+    <span class="hljs-keyword">var</span> path = uid1 &lt; uid2 ? uid1+<span class="hljs-string">'/'</span>+uid2 : uid2+<span class="hljs-string">'/'</span>+uid1;
+
+    <span class="hljs-keyword">return</span> <span class="hljs-variable">$firebaseArray</span>(userMessagesRef.child(path));
+  }
+};
+</code></pre>
+<p ng-non-bindable="">We'll be storing our direct messages in Firebase like so:</p>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">{
+  "<span class="hljs-attribute">userMessages</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">simplelogin:1</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">simplelogin:2</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">messageId1</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">uid</span>": <span class="hljs-value"><span class="hljs-string">"simplelogin:1"</span></span>,
+          "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hello!"</span></span>,
+          "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">Firebase.ServerValue.TIMESTAMP
+        </span>}</span>,
+        "<span class="hljs-attribute">messageId2</span>": <span class="hljs-value">{
+          "<span class="hljs-attribute">uid</span>": <span class="hljs-value"><span class="hljs-string">"simplelogin:2"</span></span>,
+          "<span class="hljs-attribute">body</span>": <span class="hljs-value"><span class="hljs-string">"Hey!"</span></span>,
+          "<span class="hljs-attribute">timestamp</span>": <span class="hljs-value">Firebase.ServerValue.TIMESTAMP
+        </span>}
+      </span>}
+    </span>}
+  </span>}
+</span>}
+</code></pre>
+<p ng-non-bindable="">Since we always want to reference the same path in our Firebase regardless of which id was passed first, we'll need to sort our ids before referencing the direct messages.</p>
+<checkbox id="create_channels_direct_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a new state </span><code ng-non-bindable="" class="ng-scope">channels.direct</code><span class="ng-scope"> with the following code:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">.state(<span class="hljs-string">'channels.direct'</span>, {
+  url: <span class="hljs-string">'/{uid}/messages/direct'</span>,
+  templateUrl: <span class="hljs-string">'channels/messages.html'</span>,
+  controller: <span class="hljs-string">'MessagesCtrl as messagesCtrl'</span>,
+  resolve: {
+    messages: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$stateParams</span>, Messages, profile)</span></span>{
+      <span class="hljs-keyword">return</span> Messages.forUsers(<span class="hljs-variable">$stateParams</span>.uid, profile.<span class="hljs-variable">$id</span>).<span class="hljs-variable">$loaded</span>();
+    },
+    channelName: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(<span class="hljs-variable">$stateParams</span>, Users)</span></span>{
+      <span class="hljs-keyword">return</span> Users.all.<span class="hljs-variable">$loaded</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-string">'@'</span>+Users.getDisplayName(<span class="hljs-variable">$stateParams</span>.uid);
+      });
+    }
+  }
+});
+</code></pre>
+<p ng-non-bindable="">This state is almost identical to <code ng-non-bindable="">channels.messages</code>, using the same <code ng-non-bindable="">templateUrl</code> and <code ng-non-bindable="">controller</code>. We're using a different <code ng-non-bindable="">url</code>, and the <code ng-non-bindable="">messages</code> dependency is using the <code ng-non-bindable="">Messages.forUsers</code> function that we just created. The <code ng-non-bindable="">channelName</code> dependency also looks up the other user's display name, and prefixes it with <code ng-non-bindable="">@</code>.</p>
+<checkbox id="inject_users_channels" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Inject the </span><code ng-non-bindable="" class="ng-scope">Users</code><span class="ng-scope"> service into </span><code ng-non-bindable="" class="ng-scope">ChannelsCtrl</code>
+</div></div></checkbox>
+<checkbox id="set_users_channelsctrl" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Set </span><code ng-non-bindable="" class="ng-scope">users</code><span class="ng-scope"> on </span><code ng-non-bindable="" class="ng-scope">channelsCtrl</code><span class="ng-scope"> to </span><code ng-non-bindable="" class="ng-scope">Users.all</code>
+</div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-keyword">channelsCtrl</span>.users = Users.<span class="hljs-literal">all</span>;
+</code></pre>
+<checkbox id="add_direct_messages_sidebar" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><div class="chkbox checked ng-scope" ng-if="checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: checked[id] --><!-- ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Update the sidebar to have to list all users and link to their conversations.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"channel create"</span>&gt;
+  &lt;<span class="hljs-operator">a</span> ui-sref=<span class="hljs-string">"channels.create"</span>&gt;+ <span class="hljs-built_in">create</span> channel&lt;/<span class="hljs-operator">a</span>&gt;
+&lt;/<span class="hljs-operator">div</span>&gt;
+
+&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"list-head"</span>&gt;Direct Messages&lt;/<span class="hljs-operator">div</span>&gt;
+&lt;<span class="hljs-operator">div</span> class=<span class="hljs-string">"channel"</span> ng-<span class="hljs-keyword">repeat</span>=<span class="hljs-string">"user in channelsCtrl.users"</span>&gt;
+  &lt;<span class="hljs-operator">a</span> ng-<span class="hljs-keyword">if</span>=<span class="hljs-string">"user.$id !== channelsCtrl.profile.$id"</span> ui-sref=<span class="hljs-string">"channels.private({uid: user.$id})"</span> ui-sref-active=<span class="hljs-string">"selected"</span>&gt;
+    {{ user.displayName }}
+  &lt;/<span class="hljs-operator">a</span>&gt;
+&lt;/<span class="hljs-operator">div</span>&gt;
+</code></pre>
+<p ng-non-bindable="">We're now able to chat directly to other users in our application!</p>
+</div>
+<div class="course-section ng-scope" id="adding-presence-to-users">
+<h1>Adding Presence to Users <a href="https://thinkster.io/angularfire-slack-tutorial/#adding-presence-to-users" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<screencast markdown-id="presence" title="undefined" thumbnail-url="https://embed-ssl.wistia.com/deliveries/f8f43fadf6681e7982e2c914cfb2502eaea1c587.jpg?image_crop_resized=100x60" class="ng-isolate-scope"><div class="video-box"><!-- ngIf: ::!sc.isPro --><div ng-if="::!sc.isPro" class="cover-image ng-scope" ng-click="sc.openModal()" ng-style="::sc.coverImageStyle" tabindex="0" style="background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.4)) , url(https://embed-ssl.wistia.com/deliveries/f8f43fadf6681e7982e2c914cfb2502eaea1c587.jpg) 50% 50% no-repeat;"><div class="fake-play-button" alt="Play Button - click to play" style=""></div></div><!-- end ngIf: ::!sc.isPro --><!-- ngIf: ::sc.isPro --></div></screencast>
+<p ng-non-bindable="">Having direct messaging is an important feature to any chat application, but it's also very useful to know what users are online. Firebase makes this very easy for us. Read the <a href="https://www.firebase.com/docs/web/guide/offline-capabilities.html#section-sample" target="_blank">Firebase Documentation</a> to see some example code using presence. While this code is written using the core Firebase library, we're going to replicate the same functionality using AngularFire.</p>
+<checkbox id="add_users_connectedref" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add a reference to the special </span><code ng-non-bindable="" class="ng-scope">.info/connected</code><span class="ng-scope"> node on your Firebase
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript"><span class="hljs-keyword">var</span> usersRef = <span class="hljs-keyword">new</span> Firebase(FirebaseUrl+<span class="hljs-string">'users'</span>);
+<span class="hljs-keyword">var</span> connectedRef = <span class="hljs-keyword">new</span> Firebase(FirebaseUrl+<span class="hljs-string">'.info/connected'</span>);
+</code></pre>
+<checkbox id="create_users_setonline" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Create a </span><code ng-non-bindable="" class="ng-scope">setOnline</code><span class="ng-scope"> function for our </span><code ng-non-bindable="" class="ng-scope">Users</code><span class="ng-scope"> service.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">setOnline: <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(uid)</span></span>{
+  <span class="hljs-keyword">var</span> connected = <span class="hljs-variable">$firebaseObject</span>(connectedRef);
+  <span class="hljs-keyword">var</span> online = <span class="hljs-variable">$firebaseArray</span>(usersRef.child(uid+<span class="hljs-string">'/online'</span>));
+
+  connected.<span class="hljs-variable">$watch</span>(<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">()</span></span>{
+    <span class="hljs-keyword">if</span>(connected.<span class="hljs-variable">$value</span> === <span class="hljs-keyword">true</span>){
+      online.<span class="hljs-variable">$add</span>(<span class="hljs-keyword">true</span>).then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(connectedRef)</span></span>{
+        connectedRef.onDisconnect().remove();
+      });
+    }
+  });
+}
+</code></pre>
+<p ng-non-bindable="">This function watches for changes at the <code ng-non-bindable="">.info/connected</code> node and will <code ng-non-bindable="">$add</code> any open connections to a <code ng-non-bindable="">$firebaseArray</code> keyed under <code ng-non-bindable="">online</code> within the user's profile. This allows us to track multiple connections (in case the user has multiple browser windows open), which will get removed when the client disconnects.</p>
+<checkbox id="set_online_state" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In </span><code ng-non-bindable="" class="ng-scope">app/channels/channels.controller.js</code><span class="ng-scope"> set the current user as online.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">Users.<span class="hljs-built_in">set</span>Online(<span class="hljs-keyword">profile</span>.<span class="hljs-variable">$id</span>);
+</code></pre>
+<checkbox id="update_logout" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Update our logout function to wipe out the </span><code ng-non-bindable="" class="ng-scope">online</code><span class="ng-scope"> array when the user logs out
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">channelsCtrl.logout = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+  channelsCtrl.profile.online = <span class="hljs-keyword">null</span>;
+  channelsCtrl.profile.<span class="hljs-variable">$save</span>().then(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span></span>{
+    Auth.<span class="hljs-variable">$unauth</span>();
+    <span class="hljs-variable">$state</span>.go(<span class="hljs-string">'home'</span>);
+  });
+};
+</code></pre>
+<checkbox id="add_user_info_presence" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add a presence icon next to the current user's display name in </span><code ng-non-bindable="" class="ng-scope">app/channels/index.html</code>
+</div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html">&lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"user-name"</span>&gt;
+  &lt;span <span class="hljs-keyword">class</span>=<span class="hljs-string">"presence"</span> ng-<span class="hljs-keyword">class</span>=<span class="hljs-string">"{online: channelsCtrl.profile.online}"</span>&gt;&lt;/span&gt;
+  {{ channelsCtrl.profile.displayName }}
+&lt;/div&gt;
+</code></pre>
+<p ng-non-bindable="">We're also dynamically adding the <code ng-non-bindable="">online</code> class to the span tag using <code ng-non-bindable="">ng-class</code>, based on if the <code ng-non-bindable="">$firebaseArray</code> containing connections in the profile is present.</p>
+<checkbox id="add_user_list_presence" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Add a presence icon next to the current user's display name in </span><code ng-non-bindable="" class="ng-scope">app/channels/index.html</code>
+</div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-html"><span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">a</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"user.$id !== channelsCtrl.profile.$id"</span> <span class="hljs-attribute">ui-sref</span>=<span class="hljs-value">"channels.direct({uid: user.$id})"</span> <span class="hljs-attribute">ui-sref-active</span>=<span class="hljs-value">"selected"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">span</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"presence"</span> <span class="hljs-attribute">ng-class</span>=<span class="hljs-value">"{online: user.online}"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">span</span>&gt;</span>
+  </span><span class="hljs-expression">{{ <span class="hljs-variable">user.displayName</span> }}</span><span class="xml">
+<span class="hljs-tag">&lt;/<span class="hljs-title">a</span>&gt;</span></span>
+</code></pre>
+<p ng-non-bindable="">We're now able to see when our users are online! Our application is almost ready for production. In the next sections we will go over securing our data and deploying our application live.</p>
+</div>
+<div class="course-section ng-scope" id="securing-your-data-with-security-rules">
+<h1>Securing Your Data with Security Rules <a href="https://thinkster.io/angularfire-slack-tutorial/#securing-your-data-with-security-rules" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<p ng-non-bindable="">When you first create a Firebase, the default security rules allow full read and write access. While this makes it a lot easier to get started developing, it's always strongly recommended that you create security rules to make sure that your data stays consistent and secured. There are three kinds of rules, <code ng-non-bindable="">.read</code>, <code ng-non-bindable="">.write</code>, and <code ng-non-bindable="">.validate</code> for controlling access and validating your data.</p>
+<checkbox id="read_firebase_security_docs" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Read the </span><a href="https://www.firebase.com/docs/web/guide/structuring-data.html" target="_blank" class="ng-scope">Firebase Documentation on Security</a>
+</div></div></checkbox>
+<checkbox id="add_security_rules" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Open up your Firebase Forge (the </span><code ng-non-bindable="" class="ng-scope">FirebaseUrl</code><span class="ng-scope"> constant in </span><code ng-non-bindable="" class="ng-scope">app/app.js</code><span class="ng-scope">) and add the following rules under the Security &amp; Rules section of the dashboard.
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">{
+  "<span class="hljs-attribute">rules</span>":<span class="hljs-value">{
+    "<span class="hljs-attribute">.read</span>": <span class="hljs-value"><span class="hljs-literal">true</span></span>,
+    "<span class="hljs-attribute">users</span>":<span class="hljs-value">{
+      "<span class="hljs-attribute">$uid</span>":<span class="hljs-value">{
+        "<span class="hljs-attribute">.write</span>": <span class="hljs-value"><span class="hljs-string">"auth !== null &amp;&amp; $uid === auth.uid"</span></span>,
+        "<span class="hljs-attribute">displayName</span>":<span class="hljs-value">{
+          "<span class="hljs-attribute">.validate</span>": <span class="hljs-value"><span class="hljs-string">"newData.exists() &amp;&amp; newData.val().length &gt; 0"</span>
+        </span>}</span>,
+        "<span class="hljs-attribute">online</span>":<span class="hljs-value">{
+          "<span class="hljs-attribute">$connectionId</span>":<span class="hljs-value">{
+            "<span class="hljs-attribute">.validate</span>": <span class="hljs-value"><span class="hljs-string">"newData.isBoolean()"</span>
+          </span>}
+        </span>}
+      </span>}
+    </span>}</span>,
+    "<span class="hljs-attribute">channels</span>":<span class="hljs-value">{
+      "<span class="hljs-attribute">$channelId</span>":<span class="hljs-value">{
+        "<span class="hljs-attribute">.write</span>": <span class="hljs-value"><span class="hljs-string">"auth !== null"</span></span>,
+        "<span class="hljs-attribute">name</span>":<span class="hljs-value">{
+          "<span class="hljs-attribute">.validate</span>": <span class="hljs-value"><span class="hljs-string">"newData.exists() &amp;&amp; newData.isString() &amp;&amp; newData.val().length &gt; 0"</span>
+        </span>}
+      </span>}
+    </span>}</span>,
+    "<span class="hljs-attribute">channelMessages</span>":<span class="hljs-value">{
+      "<span class="hljs-attribute">$channelId</span>":<span class="hljs-value">{
+        "<span class="hljs-attribute">$messageId</span>":<span class="hljs-value">{
+          "<span class="hljs-attribute">.write</span>": <span class="hljs-value"><span class="hljs-string">"auth !== null &amp;&amp; newData.child('uid').val() === auth.uid"</span></span>,
+          "<span class="hljs-attribute">.validate</span>": <span class="hljs-value"><span class="hljs-string">"newData.child('timestamp').exists()"</span></span>,
+          "<span class="hljs-attribute">body</span>":<span class="hljs-value">{
+            "<span class="hljs-attribute">.validate</span>": <span class="hljs-value"><span class="hljs-string">"newData.exists() &amp;&amp; newData.val().length &gt; 0"</span>
+          </span>}
+        </span>}
+      </span>}
+    </span>}</span>,
+    "<span class="hljs-attribute">userMessages</span>":<span class="hljs-value">{
+      "<span class="hljs-attribute">$uid1</span>":<span class="hljs-value">{
+        "<span class="hljs-attribute">$uid2</span>":<span class="hljs-value">{
+          "<span class="hljs-attribute">$messageId</span>":<span class="hljs-value">{
+            "<span class="hljs-attribute">.read</span>": <span class="hljs-value"><span class="hljs-string">"auth !== null &amp;&amp; ($uid1 === auth.uid || $uid2 === auth.uid)"</span></span>,
+            "<span class="hljs-attribute">.write</span>": <span class="hljs-value"><span class="hljs-string">"auth !== null &amp;&amp; newData.child('uid').val() === auth.uid"</span></span>,
+            "<span class="hljs-attribute">.validate</span>": <span class="hljs-value"><span class="hljs-string">"$uid1 &lt; $uid2 &amp;&amp; newData.child('timestamp').exists()"</span></span>,
+            "<span class="hljs-attribute">body</span>":<span class="hljs-value">{
+              "<span class="hljs-attribute">.validate</span>": <span class="hljs-value"><span class="hljs-string">"newData.exists() &amp;&amp; newData.val().length &gt; 0"</span>
+            </span>}
+          </span>}
+        </span>}
+      </span>}
+    </span>}
+  </span>}
+</span>}
+</code></pre>
+</div>
+<div class="course-section ng-scope" id="deploying-to-firebase">
+<h1>Deploying to Firebase <a href="https://thinkster.io/angularfire-slack-tutorial/#deploying-to-firebase" class="permalink" du-smooth-scroll=""><span class="icon ion-link"></span></a></h1>
+<checkbox id="install_firebase_tools" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Run </span><code ng-non-bindable="" class="ng-scope">npm install -g firebase-tools</code><span class="ng-scope"> to install the Firebase command line tool
+</span></div></div></checkbox>
+<checkbox id="create_firebase_json" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+In the root of your codebase, create the following file named </span><code ng-non-bindable="" class="ng-scope">firebase.json</code><span class="ng-scope">, filling in the name of your Firebase:
+</span></div></div></checkbox>
+<pre><code ng-non-bindable="" class="hljs lang-javascript">{
+  "<span class="hljs-attribute">firebase</span>": <span class="hljs-value"><span class="hljs-string">"firebase-name-here"</span></span>,
+  "<span class="hljs-attribute">public</span>": <span class="hljs-value"><span class="hljs-string">"dist"</span>
+</span>}
+</code></pre>
+<checkbox id="run_grunt_build" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Run </span><code ng-non-bindable="" class="ng-scope">grunt build</code><span class="ng-scope"> to build a production-ready version of our application into the </span><code ng-non-bindable="" class="ng-scope">dist</code><span class="ng-scope"> folder
+</span></div></div></checkbox>
+<checkbox id="run_firebase_deploy" class="ng-isolate-scope"><div class="progress-checkbox"><div class="checkbox-holder" ng-click="toggleState()" tabindex="0"><div class="tooltip left hidden-sm hidden-xs ng-hide" ng-show="showTooltip &amp;&amp; !checked[id]" aria-hidden="true"><div class="tooltip-arrow"></div><div class="tooltip-inner">Use checkboxes to save your progress</div></div><!-- ngIf: checked[id] --><!-- ngIf: !checked[id] --><div class="chkbox unchecked ng-scope" ng-if="!checked[id]"><i class="icon-ok"></i></div><!-- end ngIf: !checked[id] --></div><div class="checkbox-content" ng-transclude=""><span class="ng-scope">
+Run </span><code ng-non-bindable="" class="ng-scope">firebase deploy</code><span class="ng-scope"> in the root of your codebase.
+</span></div></div></checkbox>
+<p ng-non-bindable=""><code ng-non-bindable="">firebase deploy</code> may prompt you to log in, but afterwards it should push your application to Firebase's hosting service. Now if you visit <a href="https://firebase-name-here.firebaseapp.com/" target="_blank">https://firebase-name-here.firebaseapp.com/</a> you should see our completed app, ready for the world to use!</p>
+</div>
+</ng-transclude></div></div></div><div id="bottom-of-page" class="container-fluid footer-bar"><div class="row content"><div class="col-lg-6 col-lg-offset-3 col-md-8 col-md-offset-2"><author-footer author-data="course.author" course-title="Learn to build a Real-Time Slack clone with AngularFire" course-url="angularfire-slack-tutorial" class="ng-isolate-scope"><div class="share-box" ng-class="{ seen: seen }" in-view="seen = true"><h2>You finished!</h2><p>Nicely done! Share your awesome new skills with the world:</p><div class="btn-area"><a ng-href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F" class="btn share-btn facebook" target="_blank" ng-transclude="" service="facebook" classes="btn share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F"><i class="ion-social-facebook ng-scope"></i></a><a ng-href="https://twitter.com/intent/tweet?text=Learn%20to%20build%20a%20Real-Time%20Slack%20clone%20with%20AngularFire&amp;url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F&amp;related=gothinkster,angulartutorial&quot;" class="btn share-btn twitter" target="_blank" ng-transclude="" service="twitter" text="Learn to build a Real-Time Slack clone with AngularFire" classes="btn share-btn twitter" href="https://twitter.com/intent/tweet?text=Learn%20to%20build%20a%20Real-Time%20Slack%20clone%20with%20AngularFire&url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F&related=gothinkster,angulartutorial%22"><i class="ion-social-twitter ng-scope"></i></a><a ng-href="https://plus.google.com/share?url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F" class="btn share-btn google" target="_blank" ng-transclude="" service="google" classes="btn share-btn google" href="https://plus.google.com/share?url=https%3A%2F%2Fthinkster.io%2Fangularfire-slack-tutorial%2F"><i class="ion-social-google ng-scope"></i></a></div></div><div class="author-box"><a ng-href="/author/pai" class="prof-pic" href="https://thinkster.io/author/pai"><img ng-src="//pbs.twimg.com/profile_images/378800000083138513/0023a916f6679d6b7df59d5812be938f.jpeg" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/0023a916f6679d6b7df59d5812be938f.jpeg"></a><p>Receive emails when <a ng-href="/author/pai" class="ng-binding" href="https://thinkster.io/author/pai">Albert Pai</a> posts new content.</p><email-sign-up course="angularfire-slack-tutorial" class="ng-isolate-scope"><form role="form" ng-show="state === &#39;start&#39;" class="form-inline ng-pristine ng-valid-email ng-invalid ng-invalid-required" name="form" ng-submit="submit(form.$valid)" ng-model-options="{ updateOn: &#39;submit blur&#39; }" novalidate="" aria-hidden="false"><div class="input-group"><label class="sr-only" for="email">email</label><input id="email" class="form-control ng-pristine ng-untouched ng-valid-email ng-invalid ng-invalid-required" type="email" name="email" ng-model="email" placeholder="you@hello.com" required="" tabindex="0" aria-required="true" aria-invalid="true"> <span class="input-group-btn"><button class="btn btn-default" ng-disabled="submitting" type="submit" aria-disabled="false">Subscribe</button></span></div></form><div class="alert alert-success ng-hide" ng-show="state === &#39;complete&#39;" aria-hidden="true">Great Job, you're on the list!</div></email-sign-up></div></author-footer></div><a href="https://thinkster.io/" class="more-courses"><i class="ion-chevron-left"></i> <b>View our latest courses</b></a></div></div><scroll-top><div class="scrolltop-button hidden-sm" ng-show="showScroll" ng-click="scrollTop()" tabindex="0" aria-hidden="false"> <span class="icon ion-chevron-up"></span></div></scroll-top></course>
+</div>
+ 
+</div>
+ <script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");
+  for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="//cdn.mxpnl.com/libs/mixpanel-2.2.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
+  mixpanel.init('69b4bbc18e4d0a4de5d342823276fddc');</script> 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-41906157-1', 'auto');
+  // ga('send', 'pageview');
+</script>
+<script type="text/javascript">
+  (function() {
+    window._pa = window._pa || {};
+    // _pa.orderId = "myOrderId"; // OPTIONAL: attach unique conversion identifier to conversions
+    // _pa.revenue = "19.99"; // OPTIONAL: attach dynamic purchase values to conversions
+    // _pa.productId = "myProductId"; // OPTIONAL: Include product ID for use with dynamic ads
+    var pa = document.createElement('script'); pa.type = 'text/javascript'; pa.async = true;
+    pa.src = ('https:' == document.location.protocol ? 'https:' : 'http:') + "//tag.perfectaudience.com/serve/546e6b25c2b687f594000007.js";
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(pa, s);
+  })();
+</script>
+
+
+<iframe name="stripeXDM_default587339_provider" id="stripeXDM_default587339_provider" src="./Learn to build a Real-Time Slack clone with AngularFire _ Thinkster_files/channel.html" frameborder="0" style="position: absolute; top: -2000px; left: 0px;"></iframe><script id="hiddenlpsubmitdiv" style="display: none;"></script><script>try{for(var lastpass_iter=0; lastpass_iter < document.forms.length; lastpass_iter++){ var lastpass_f = document.forms[lastpass_iter]; if(typeof(lastpass_f.lpsubmitorig2)=="undefined"){ lastpass_f.lpsubmitorig2 = lastpass_f.submit; if (typeof(lastpass_f.lpsubmitorig2)=='object'){ continue;}lastpass_f.submit = function(){ var form=this; var customEvent = document.createEvent("Event"); customEvent.initEvent("lpCustomEvent", true, true); var d = document.getElementById("hiddenlpsubmitdiv"); if (d) {for(var i = 0; i < document.forms.length; i++){ if(document.forms[i]==form){ if (typeof(d.innerText) != 'undefined') { d.innerText=i.toString(); } else { d.textContent=i.toString(); } } } d.dispatchEvent(customEvent); }form.lpsubmitorig2(); } } }}catch(e){}</script></body><span class="gr__tooltip"><span class="gr__tooltip-content"></span><i class="gr__tooltip-logo"></i><span class="gr__triangle"></span></span></html>

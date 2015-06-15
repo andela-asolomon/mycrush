@@ -29,8 +29,17 @@ angular.module('MyCrush')
     };
 
     $scope.logout = function() {
-      Authentication.$unauth();
-      $state.go('home');
+      Users.getProfile($scope.currentUser.uid).$loaded()
+        .then(function(profile){
+          profile.online = null;
+          profile.$save().then(function(){
+            Authentication.$unauth();
+            toaster.pop('success', 'Logged Out');
+            $state.go('home');
+          });
+        }, function(error) {
+          toaster.pop('error', 'Unable to Log Out');
+        });
     };
 
   }]);

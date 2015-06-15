@@ -9,6 +9,8 @@ angular.module('MyCrush')
         users     = $firebaseArray(usersRef),
         auth      = $firebaseAuth(ref);
 
+  var connectedRef = new Firebase(FURL + '.info/connected');
+
     var Users = {
 
       user: {},
@@ -21,11 +23,7 @@ angular.module('MyCrush')
             name: user.name,
             accessToken: user.accessToken,
             gravatar: user.gravatar,
-            email: user.email,
-            crush: true,
-            gender: true,
-            username: true,
-            description: true
+            email: user.email
           };
 
           return usersRef.child(uid).set(profile, function(error) {
@@ -47,6 +45,30 @@ angular.module('MyCrush')
 
       signedIn: function() {
         return !!Users.user.provider;
+      },
+
+      setCrush: function(id) {
+        Users.getProfile(id).$loaded().then(function(profile){
+          profile.crush = Users.user.uid;
+          profile.$save().then(function(){
+            console.log('Yay');
+          });
+        }, function(error) {
+          console.log("Error");
+        });
+      },
+
+      setOnline: function(uid) {
+        var connected = $firebaseObject(connectedRef);
+        var online = $firebaseArray(usersRef.child(uid + '/online'));
+
+        connected.$watch(function() {
+          if (connected.$value === true) {
+            online.$add(true).then(function(connectedRef){
+              connectedRef.onDisconnect().remove();
+            });
+          };
+        });
       }
     };
 

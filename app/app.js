@@ -20,7 +20,16 @@ angular
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'home/home.html'
+        templateUrl: 'home/home.html',
+        resolve: {
+          requireNoAuth: function($state, Authentication) {
+            return Authentication.$requireAuth().then(function(auth){
+              $state.go('timeline');
+            }, function(error) {
+              return;
+            });
+          }
+        }
       })
       .state('timeline', {
         url: '/timeline',
@@ -45,6 +54,19 @@ angular
             }, function(error) {
               $state.go('home');
             });
+          }
+        }
+      })
+      .state('timeline.direct', {
+        url: '/{uid}/direct',
+        controller: 'MessagesController',
+        templateUrl: 'messages/messages.html',
+        resolve: {
+          messages: function($stateParams, Messages, profile) {
+            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+          },
+          user: function($stateParams, Users) {
+            return Users.getUsername($stateParams.uid);
           }
         }
       })
