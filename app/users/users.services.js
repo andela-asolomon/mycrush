@@ -43,6 +43,10 @@ angular.module('MyCrush')
         return users.$getRecord(uid).username;
       },
 
+      getGravatar: function(uid) {
+        return users.$getRecord(uid).gravatar;
+      },
+
       signedIn: function() {
         return !!Users.user.provider;
       },

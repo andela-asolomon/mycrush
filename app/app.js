@@ -14,7 +14,8 @@ angular
     'angular-md5',
     'ui.router',
     'ngAnimate',
-    'toaster'
+    'toaster',
+    'angularMoment'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -67,6 +68,14 @@ angular
           },
           user: function($stateParams, Users) {
             return Users.getUsername($stateParams.uid);
+          },
+          profile: function(Users, Authentication) {
+            return Authentication.$requireAuth().then(function(auth) {
+              return Users.getProfile(auth.uid).$loaded();
+            });
+          },
+          crush: function($stateParams, Users) {
+            return Users.getProfile($stateParams.uid).$loaded();
           }
         }
       })

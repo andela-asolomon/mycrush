@@ -1,9 +1,13 @@
 angular.module('MyCrush')
-  .controller('MessagesController', ['$scope', '$state', 'toaster', 'messages', 'user',
-    function ($scope, $state, toaster, messages, user) {
+  .controller('MessagesController', ['$scope', '$state', 'toaster', 'messages', 'user', 'profile', 'crush', 'Users',
+    function ($scope, $state, toaster, messages, user, profile, crush, Users) {
 
       $scope.messages = messages;
+      console.log("messages: ", $scope.messages);
       $scope.user = user;
+
+      $scope.getUsername = Users.getUsername;
+      $scope.getGravatar = Users.getGravatar;
 
       $scope.message = '';
 
