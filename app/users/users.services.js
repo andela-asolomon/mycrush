@@ -51,14 +51,19 @@ angular.module('MyCrush')
         return !!Users.user.provider;
       },
 
-      setCrush: function(id) {
+      setCrush: function(id, cb) {
         Users.getProfile(id).$loaded().then(function(profile){
-          profile.crush = Users.user.uid;
-          profile.$save().then(function(){
-            console.log('Yay');
-          });
+          if (profile.crush) {
+            return;
+          } else {
+            profile.crush = Users.user.uid;
+            profile.$save().then(function(){
+              cb();
+            });
+          }
         }, function(error) {
           console.log("Error");
+          cb(error);
         });
       },
 

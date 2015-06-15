@@ -18,7 +18,6 @@ angular.module('MyCrush')
           email: authData.google.email
         };
         Users.createProfile(authData.uid, user);
-        console.log("Logged in as:", authData);
         $state.go('timeline');
         toaster.pop('success', 'Logged in as ' + authData.google.cachedUserProfile.name);
 

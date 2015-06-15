@@ -15,7 +15,8 @@ angular
     'ui.router',
     'ngAnimate',
     'toaster',
-    'angularMoment'
+    'angularMoment',
+    'luegg.directives'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
@@ -91,7 +92,6 @@ angular
           },
           profile: function(Users, Authentication) {
             return Authentication.$requireAuth().then(function(auth) {
-              console.log("auth: ", auth);
               return Users.getProfile(auth.uid).$loaded();
             });
           }

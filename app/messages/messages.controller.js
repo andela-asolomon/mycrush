@@ -1,19 +1,21 @@
 angular.module('MyCrush')
-  .controller('MessagesController', ['$scope', '$state', 'toaster', 'messages', 'user', 'profile', 'crush', 'Users',
-    function ($scope, $state, toaster, messages, user, profile, crush, Users) {
+  .controller('MessagesController', ['$scope', '$state', 'toaster', 'messages', 'user', 'profile', 'Users',
+    function ($scope, $state, toaster, messages, user, profile, Users) {
 
       $scope.messages = messages;
-      console.log("messages: ", $scope.messages);
       $scope.user = user;
 
       $scope.getUsername = Users.getUsername;
       $scope.getGravatar = Users.getGravatar;
+      $scope.profile = profile;
 
       $scope.message = '';
 
+      $scope.notification = [];
+
       $scope.sendMessaage = function() {
-        console.log("message: ", $scope.message);
         if ($scope.message.length > 0) {
+          $scope.notification.push($scope.message);
           $scope.messages.$add({
             uid: profile.$id,
             body: $scope.message,
@@ -26,7 +28,7 @@ angular.module('MyCrush')
 
 
       /**
-       * Jquery Chat
+       * Jquery for hiding and showing chat box
        */
       $('#live-chat header').on('click', function() {
         $('.chat').slideToggle(300, 'swing');
@@ -34,6 +36,7 @@ angular.module('MyCrush')
       });
 
       $('.chat-close').on('click', function(e) {
+        $state.go('timeline');
         e.preventDefault();
         $('#live-chat').fadeOut(300);
       });
