@@ -8,7 +8,11 @@
         <i class="fa fa-heart fa-4x" ng-if="profile.crush[key] === user.$id"></i>
       </div>
       <div class="profile-info">
-        <span class="name">{{user.name}}</span><br>
+        <span class="name">
+          <a ui-sref="profile({uid: user.$id})">
+            {{user.name}}
+          </a>
+        </span><br>
         <span>{{user.gender}} | {{user.username}}</span><br>
         <span>{{user.description}}</span><br>
         <span ng-if="user.online" class="text-success">online</span>

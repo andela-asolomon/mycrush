@@ -51,7 +51,7 @@ angular
                 if(profile.username){
                   return profile
                 } else {
-                  $state.go('profile');
+                  $state.go('profile', {uid: profile.$id});
                 }
               });
             }, function(error) {
@@ -82,7 +82,7 @@ angular
         }
       })
       .state('profile', {
-        url: '/profile',
+        url: '/{uid}/profile',
         templateUrl: 'users/profile.html',
         controller: 'ProfileCtrl',
         resolve: {
@@ -91,9 +91,9 @@ angular
               $state.go('home');
             });
           },
-          profile: function(Users, Authentication) {
+          profile: function(Users, Authentication, $stateParams) {
             return Authentication.$requireAuth().then(function(auth) {
-              return Users.getProfile(auth.uid).$loaded();
+              return Users.getProfile($stateParams.uid).$loaded();
             });
           }
         }
