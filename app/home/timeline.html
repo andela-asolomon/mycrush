@@ -2,8 +2,10 @@
   <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3" ng-repeat="(key, user) in users">
     <div class="profile-card" style="background-image: url({{user.gravatar}})">
       <div class="crush">
-        <i class="fa fa-heart-o fa-4x" ng-click="crush(user.$id)" ng-hide="user.crush === profile.$id"></i>
-        <i class="fa fa-heart fa-4x" ng-if="user.crush === profile.$id"></i>
+        <a href="" ng-click="crush(user.$id)" ng-hide="profile.crush[key] === user.$id">
+          <i class="fa fa-heart-o fa-4x"></i>
+        </a>
+        <i class="fa fa-heart fa-4x" ng-if="profile.crush[key] === user.$id"></i>
       </div>
       <div class="profile-info">
         <span class="name">{{user.name}}</span><br>
@@ -11,7 +13,7 @@
         <span>{{user.description}}</span><br>
         <span ng-if="user.online" class="text-success">online</span>
         <span ng-if="!user.online" class="text-danger">offline</span> <br>
-        <span>
+        <span ng-if="profile.crush[key] === user.$id">
           <a ui-sref="timeline.direct({uid: user.$id})" ui-sref-active="selected">Chat</a>
         </span>
       </div>

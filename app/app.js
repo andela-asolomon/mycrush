@@ -16,7 +16,8 @@ angular
     'ngAnimate',
     'toaster',
     'angularMoment',
-    'luegg.directives'
+    'luegg.directives',
+    'ngLodash'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider

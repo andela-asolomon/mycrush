@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('MyCrush')
-.factory('Users', ['FURL', '$firebaseAuth', '$firebaseObject', '$firebaseArray',
-  function(FURL, $firebaseAuth, $firebaseObject, $firebaseArray) {
+.factory('Users', ['FURL', '$firebaseAuth', '$firebaseObject', '$firebaseArray', 'lodash',
+  function(FURL, $firebaseAuth, $firebaseObject, $firebaseArray, lodash) {
 
     var ref       = new Firebase(FURL),
         usersRef  = new Firebase(FURL + 'users'),
@@ -52,11 +52,19 @@ angular.module('MyCrush')
       },
 
       setCrush: function(id, cb) {
-        Users.getProfile(id).$loaded().then(function(profile){
-          if (profile.crush) {
-            return;
+        Users.getProfile(Users.user.uid).$loaded().then(function(profile){
+           if (profile.crush) {
+              var idx = profile.crush.indexOf(id);
+              if (idx !== -1) {
+                return;
+              } else {
+                profile.crush.push(id);
+                profile.$save().then(function(){
+                  cb();
+                });
+              }
           } else {
-            profile.crush = Users.user.uid;
+            profile.crush = [id];
             profile.$save().then(function(){
               cb();
             });

@@ -6,6 +6,8 @@ angular.module('MyCrush')
 
       $scope.currentUser = Users.user;
       $scope.profile = profile;
+      // $scope.profile.crush = profile.crush
+      // console.log("profile: ", $scope.crush);
       $scope.profile.online = Users.setOnline(profile.$id);
 
       $scope.users = [];
