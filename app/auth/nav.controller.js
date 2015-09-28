@@ -10,24 +10,10 @@ angular.module('MyCrush')
 
     $scope.login = function() {
       var options = { remember: true, scope: 'email' };
-      Authentication.$authWithOAuthPopup("google", options).then(function(authData) {
+      Authentication.$authWithOAuthPopup("google", options)
+        .then(function(authData) {
 
-        Users.getProfile(authData.uid).$loaded().then(function(profile){
-          if (profile) {
-            return
-          } else {
-            var user = {
-              name: authData.google.cachedUserProfile.name,
-              accessToken: authData.google.accessToken,
-              gravatar: authData.google.cachedUserProfile.picture,
-              email: authData.google.email
-            };
-            Users.createProfile(authData.uid, user);
-          }
-        });
-
-        $state.go('timeline');
-        toaster.pop('success', 'Logged in as ' + authData.google.cachedUserProfile.name);
+        checkIfUserExists(authData);
 
       }).catch(function(error) {
         console.error("Authentication failed:", error);
@@ -48,6 +34,36 @@ angular.module('MyCrush')
           toaster.pop('error', 'Unable to Log Out');
         });
     };
+
+    var createNewUser = function(authData) {
+      var user = {
+        name: authData.google.cachedUserProfile.name,
+        accessToken: authData.google.accessToken,
+        gravatar: authData.google.cachedUserProfile.picture,
+        email: authData.google.email
+      };
+      Users.createProfile(authData.uid, user);
+      loginPopupToast(authData);
+    };
+
+    var checkIfUserExists = function(authData) {
+     Users.getProfile(authData.uid)
+     .$loaded()
+     .then(function(profile) {
+       if (profile.username) {
+        loginPopupToast(authData);
+       } else {
+        createNewUser(authData);
+       }
+     }, function(error) {
+       console.log("Error: ", error);
+     })
+    }
+
+    var loginPopupToast = function(authData) {
+      $state.go('timeline');
+      toaster.pop('success', 'Logged in as ' + authData.google.cachedUserProfile.name);
+    }
 
   }]);
 
