@@ -11,6 +11,9 @@ a, a:hover, a:focus {
   color: #121515;
 }
 
+.dx {
+  margin-top: 20px !important;
+}
 
 /* Form */
 
@@ -248,7 +251,7 @@ a, a:hover, a:focus {
 
  img {
      border: 0;
-     display: block;
+     /*display: block;*/
      height: auto;
      max-width: 100%;
  }

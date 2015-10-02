@@ -6,28 +6,21 @@ angular.module('MyCrush')
       $scope.profile = profile;
       $scope.uid = $stateParams.uid;
 
+      $scope.getUser = function(uid) {
+        Users.getProfile(uid).$loaded()
+        .then(function(user) {
+          $scope.user = user;
+          console.log("User: ", user);
+        }, function(err) {
+          console.log("Err: ", err);
+        });
+      }
+
       $scope.updateProfile = function() {
         $scope.profile.$save().then(function(){
-          $state.go('timeline');
+          $('#posModal').modal('hide');
           toaster.pop('success', 'Profile Updated Successfully');
         });
       };
-
-      /** Jquery */
-      $("#toggle-link").click(function(e) {
-           e.preventDefault();
-           $("#profileCol").toggleClass("hidden");
-           if($("#profileCol").hasClass('hidden')){
-
-               $("#contentCol").removeClass('col-md-9');
-               $("#contentCol").addClass('col-md-12 fade in');
-               $(this).html('Show Menu <i class="fa fa-arrow-right"></i>');
-           }else {
-               $("#contentCol").removeClass('col-md-12');
-               $("#contentCol").addClass('col-md-9');
-               $(this).html('<i class="fa fa-arrow-left"></i> Hide Menu');
-           }
-       });
-       $('.tip').tooltip();
 
   }])
