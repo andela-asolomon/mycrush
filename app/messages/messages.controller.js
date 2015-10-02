@@ -26,7 +26,6 @@ angular.module('MyCrush')
         };
       }
 
-
       /**
        * Jquery for hiding and showing chat box
        */

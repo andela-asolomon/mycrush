@@ -95,6 +95,11 @@ angular
             return Authentication.$requireAuth().then(function(auth) {
               return Users.getProfile($stateParams.uid).$loaded();
             });
+          },
+          minds: function(Users, Authentication, $stateParams) {
+            return Authentication.$requireAuth().then(function(auth) {
+              return Users.setMinds(auth.uid).$loaded();
+            });
           }
         }
       });

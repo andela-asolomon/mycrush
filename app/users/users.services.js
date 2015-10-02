@@ -7,7 +7,8 @@ angular.module('MyCrush')
     var ref       = new Firebase(FURL),
         usersRef  = new Firebase(FURL + 'users'),
         users     = $firebaseArray(usersRef),
-        auth      = $firebaseAuth(ref);
+        auth      = $firebaseAuth(ref),
+        mindsRef      = new Firebase(FURL + 'minds');
 
   var connectedRef = new Firebase(FURL + '.info/connected');
 
@@ -49,6 +50,19 @@ angular.module('MyCrush')
 
       signedIn: function() {
         return !!Users.user.provider;
+      },
+
+      // setMinds: function(uid, mindObj, cb) {
+      //   mindObj['timestamp'] = Firebase.ServerValue.TIMESTAMP;
+      //   return mindsRef.child(uid).push(mindObj, function(err) {
+      //     if (!err) {
+      //       cb();
+      //     }
+      //   });
+      // },
+
+      setMinds: function(uid) {
+        return $firebaseArray(mindsRef.child(uid));
       },
 
       setCrush: function(id, cb) {
