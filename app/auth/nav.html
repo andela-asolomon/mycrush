@@ -15,7 +15,7 @@
     <div class="collapse navbar-collapse navbar-ex1-collapse">
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="signedIn()"><a href="" ng-click="login()">Login</a></li>
-        <li><a href="#/timeline">Timeline</a></li>
+        <li ng-show="signedIn()"><a href="#/timeline">Timeline</a></li>
 
         <li ng-show="signedIn()" class="dropdown">
           <a href="" class="dropdown-toggle" data-toggle="dropdown">
