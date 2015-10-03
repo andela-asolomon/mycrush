@@ -14,13 +14,29 @@ angular
     'angular-md5',
     'ui.router',
     'ngAnimate',
-    'toaster'
+    'toaster',
+    'angularMoment',
+    'luegg.directives',
+    'ngLodash'
   ])
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('home', {
         url: '/',
         templateUrl: 'home/home.html',
+        resolve: {
+          requireNoAuth: function($state, Authentication) {
+            return Authentication.$requireAuth().then(function(auth){
+              $state.go('timeline');
+            }, function(error) {
+              return;
+            });
+          }
+        }
+      })
+      .state('timeline', {
+        url: '/timeline',
+        templateUrl: 'home/timeline.html',
         controller: 'UserController',
         resolve : {
           users: function(Users) {
@@ -35,7 +51,7 @@ angular
                 if(profile.username){
                   return profile
                 } else {
-                  $state.go('profile');
+                  $state.go('profile', {uid: profile.$id});
                 }
               });
             }, function(error) {
@@ -44,8 +60,29 @@ angular
           }
         }
       })
+      .state('timeline.direct', {
+        url: '/{uid}/direct',
+        controller: 'MessagesController',
+        templateUrl: 'messages/messages.html',
+        resolve: {
+          messages: function($stateParams, Messages, profile) {
+            return Messages.forUsers($stateParams.uid, profile.$id).$loaded();
+          },
+          user: function($stateParams, Users) {
+            return Users.getUsername($stateParams.uid);
+          },
+          profile: function(Users, Authentication) {
+            return Authentication.$requireAuth().then(function(auth) {
+              return Users.getProfile(auth.uid).$loaded();
+            });
+          },
+          crush: function($stateParams, Users) {
+            return Users.getProfile($stateParams.uid).$loaded();
+          }
+        }
+      })
       .state('profile', {
-        url: '/profile',
+        url: '/{uid}/profile',
         templateUrl: 'users/profile.html',
         controller: 'ProfileCtrl',
         resolve: {
@@ -54,10 +91,14 @@ angular
               $state.go('home');
             });
           },
-          profile: function(Users, Authentication) {
+          profile: function(Users, Authentication, $stateParams) {
             return Authentication.$requireAuth().then(function(auth) {
-              console.log("auth: ", auth);
-              return Users.getProfile(auth.uid).$loaded();
+              return Users.getProfile($stateParams.uid).$loaded();
+            });
+          },
+          minds: function(Users, Authentication, $stateParams) {
+            return Authentication.$requireAuth().then(function(auth) {
+              return Users.setMinds($stateParams.uid).$loaded();
             });
           }
         }

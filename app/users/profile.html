@@ -1,36 +1,100 @@
-<div class="container">
+<div class="container dx" ng-init="getUser(uid)">
   <div class="row">
-
-    <div class="col-lg-5">
-      <div class="page-wrapper">
-
-        <div class="page-header">
-          <h1>Edit Profile</h1>
+    <div class="col-md-3">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <h3 class="panel-title"> PROFILE </h3>
         </div>
-
-        <form ng-submit="updateProfile()">
-          <p ng-hide="profile.displayName">
-             You'll need a username before you can start looking for your crush.
-          </p>
-
-          <div class="form-group">
-              <input required type="text" class="form-control" placeholder="Username" ng-model="profile.username">
-          </div>
-
-          <div class="form-group">
-              <label for="select" class="control-label">Gender</label>
-              <div class="col-lg-10">
-                  <select class="form-control" id="select" ng-model="profile.gender">
-                      <option>Male</option>
-                      <option>Female</option>
-                  </select>
-              </div>
-          </div>
-
-          <input type="submit" class="btn btn-danger" value="Set Username">
-        </form>
+        <div class="panel-body">
+           <div class="profile-userpic">
+               <img src="{{user.gravatar}}" class="img-responsive" alt="">
+           </div>
+           <div class="profile-usertitle">
+             <div class="profile-usertitle-name">
+               <span>{{user.name}}</span><br>
+               <span>{{user.username}}</span><br>
+               <span>{{user.gender}}</span><br>
+               <span ng-hide="profile.username">You'll need a username before you can start looking for your crush.</span>
+             </div>
+           </div>
+        </div>
+        <div class="panel-footer" ng-if="currentUser.profile.$id === uid">
+          <button class="btn btn-info pull-right" data-toggle="modal" data-target="#posModal">Edit</button>
+          <div class="clearfix"></div>
+        </div>
       </div>
     </div>
+    <div class="col-md-9">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="panel panel-warning" ng-if="currentUser.profile.$id === uid">
+            <div class="panel-heading">
+              <h3 class="panel-title"> STATUS </h3>
+            </div>
+            <div class="panel-body">
+              <div class="col-md-11">
+                  <input type="text" class="form-control" placeholder="What's on your mind ?" ng-if="currentUser.profile.$id === uid" ng-model="mind" ng-search="setMind(mind)" required>
+              </div>
+              <div class="col-md-1">
+                  <img src="{{user.gravatar}}" class="img-responsive  img-circle" ng-if="currentUser.profile.$id === uid" width="50px">
+              </div>
+            </div>
+          </div>
 
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <h3 class="panel-title"> UPDATES </h3>
+            </div>
+            <div class="panel-body">
+              <div class="well well-md profile-usertitle-name" ng-if="minds.length === 0">
+                <span>No Updates from this User at this time</span>
+              </div>
+            </div>
+            <div class="panel-body" ng-repeat="message in minds | orderBy:'timestamp':true" ng-if="minds && minds.length > 0">
+              <div class="col-md-1">
+                <img src="{{user.gravatar}}" class="img-responsive  img-circle" width="50px">
+              </div>
+              <div class="col-md-11">
+                <div class="well well-md profile-usertitle-name">
+                  <span>{{ message.body }}</span>
+                  <span class="pull-right" am-time-ago="message.timestamp"></span>
+                </div>
+                <div ng-init="getComments(message.$id)">
+                  <div class="row" ng-repeat="com in comments[message.$id]">
+                    <div class="col-md-1">
+                      <img ng-src="{{com.gravatar}}" class="img-circle gravatar">
+                    </div>
+                    <div class="col-md-11">
+                      <div class="well well-sm cmt">
+                        <span class="cmt-title">{{com.name}}: </span>
+                        <span class="cmt-time pull-right"><span am-time-ago="{{com.timestamp}}"></span></span><br>
+                        <span>{{com.body}}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-1">
+                      <img ng-src="{{currentUser.profile.gravatar}}" class="img-circle comment gravatar">
+                    </div>
+
+                    <div class="col-md-11">
+                      <form ng-submit="addComment(message.$id, content); content='' ">
+                        <input type="text" ng-model="content" cols="10" rows="3" class="form-control" placeholder="Comments Here..." required><br>
+                        <span class="pull-right">
+                          <input type="submit" class="btn btn-info" value="Comment">
+                        </span>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+<div ng-show="currentUser" ng-include="'users/partials/editProfile.html'"></div>

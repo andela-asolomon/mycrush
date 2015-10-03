@@ -1,13 +1,16 @@
 'use strict';
 
 angular.module('MyCrush')
-.factory('Users', ['FURL', '$firebaseAuth', '$firebaseObject', '$firebaseArray',
-  function(FURL, $firebaseAuth, $firebaseObject, $firebaseArray) {
+.factory('Users', ['FURL', '$firebaseAuth', '$firebaseObject', '$firebaseArray', 'lodash',
+  function(FURL, $firebaseAuth, $firebaseObject, $firebaseArray, lodash) {
 
     var ref       = new Firebase(FURL),
         usersRef  = new Firebase(FURL + 'users'),
         users     = $firebaseArray(usersRef),
-        auth      = $firebaseAuth(ref);
+        auth      = $firebaseAuth(ref),
+        mindsRef      = new Firebase(FURL + 'minds');
+
+  var connectedRef = new Firebase(FURL + '.info/connected');
 
     var Users = {
 
@@ -21,10 +24,7 @@ angular.module('MyCrush')
             name: user.name,
             accessToken: user.accessToken,
             gravatar: user.gravatar,
-            email: user.email,
-            crush: true,
-            gender: true,
-            username: true,
+            email: user.email
           };
 
           return usersRef.child(uid).set(profile, function(error) {
@@ -44,8 +44,53 @@ angular.module('MyCrush')
         return users.$getRecord(uid).username;
       },
 
+      getGravatar: function(uid) {
+        return users.$getRecord(uid).gravatar;
+      },
+
       signedIn: function() {
         return !!Users.user.provider;
+      },
+
+      setMinds: function(uid) {
+        return $firebaseArray(mindsRef.child(uid));
+      },
+
+      setCrush: function(id, cb) {
+        Users.getProfile(Users.user.uid).$loaded().then(function(profile){
+           if (profile.crush) {
+              var idx = profile.crush.indexOf(id);
+              if (idx !== -1) {
+                return;
+              } else {
+                profile.crush.push(id);
+                profile.$save().then(function(){
+                  cb();
+                });
+              }
+          } else {
+            profile.crush = [id];
+            profile.$save().then(function(){
+              cb();
+            });
+          }
+        }, function(error) {
+          console.log("Error");
+          cb(error);
+        });
+      },
+
+      setOnline: function(uid) {
+        var connected = $firebaseObject(connectedRef);
+        var online = $firebaseArray(usersRef.child(uid + '/online'));
+
+        connected.$watch(function() {
+          if (connected.$value === true) {
+            online.$add(true).then(function(connectedRef){
+              connectedRef.onDisconnect().remove();
+            });
+          };
+        });
       }
     };
 
