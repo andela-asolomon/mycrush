@@ -14,6 +14,7 @@
                <span>{{user.name}}</span><br>
                <span>{{user.username}}</span><br>
                <span>{{user.gender}}</span><br>
+               <span>About: {{user.description}}</span>
                <span ng-hide="profile.username">You'll need a username before you can start looking for your crush.</span>
              </div>
            </div>
@@ -33,7 +34,7 @@
             </div>
             <div class="panel-body">
               <div class="col-md-11">
-                  <input type="text" class="form-control" placeholder="What's on your mind ?" ng-if="currentUser.profile.$id === uid" ng-model="mind" ng-search="setMind(mind)" required>
+                  <input type="text" class="form-control" placeholder="What's on your mind?" ng-if="currentUser.profile.$id === uid" ng-model="mind" ng-search="setMind(mind)" required>
               </div>
               <div class="col-md-1">
                   <img src="{{user.gravatar}}" class="img-responsive  img-circle" ng-if="currentUser.profile.$id === uid" width="50px">
@@ -61,15 +62,20 @@
                 </div>
                 <div ng-init="getComments(message.$id)">
                   <div class="row" ng-repeat="com in comments[message.$id]">
-                    <div class="col-md-1">
-                      <img ng-src="{{com.gravatar}}" class="img-circle gravatar">
+                    <div class="col-md-12">
+                    <div class="list-group">
+                        <div class="list-group-item">
+                            <div class="row-picture">
+                                <img class="circle" src="{{com.gravatar}}" alt="icon">
+                            </div>
+                            <div class="row-content">
+                                 <div class="least-content" am-time-ago="{{com.timestamp}}"></div>
+                                 <span class="cmt-title">{{com.name}}: </span> <br>
+                                 <span>{{com.body}}</span>
+                            </div>
+                        </div>
+                        <div class="list-group-separator"></div>
                     </div>
-                    <div class="col-md-11">
-                      <div class="well well-sm cmt">
-                        <span class="cmt-title">{{com.name}}: </span>
-                        <span class="cmt-time pull-right"><span am-time-ago="{{com.timestamp}}"></span></span><br>
-                        <span>{{com.body}}</span>
-                      </div>
                     </div>
                   </div>
 
@@ -80,7 +86,7 @@
 
                     <div class="col-md-11">
                       <form ng-submit="addComment(message.$id, content); content='' ">
-                        <input type="text" ng-model="content" cols="10" rows="3" class="form-control" placeholder="Comments Here..." required><br>
+                        <input type="text" ng-model="content" cols="10" rows="3" class="form-control" placeholder="Write a comment..." required><br>
                         <span class="pull-right">
                           <input type="submit" class="btn btn-info" value="Comment">
                         </span>
