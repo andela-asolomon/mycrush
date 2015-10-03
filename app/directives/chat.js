@@ -9,6 +9,7 @@ angular.module('MyCrush')
             scope.$apply(function() {
               scope.$eval(attrs.ngSearch);
             });
+            scope.mind = '';
             event.preventDefault();
           }
         });

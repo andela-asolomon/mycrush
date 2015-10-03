@@ -98,7 +98,7 @@ angular
           },
           minds: function(Users, Authentication, $stateParams) {
             return Authentication.$requireAuth().then(function(auth) {
-              return Users.setMinds(auth.uid).$loaded();
+              return Users.setMinds($stateParams.uid).$loaded();
             });
           }
         }

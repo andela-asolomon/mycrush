@@ -29,52 +29,65 @@
         <div class="col-md-12">
           <div class="panel panel-warning" ng-if="currentUser.profile.$id === uid">
             <div class="panel-heading">
-              <h3 class="panel-title"> DIARIES </h3>
+              <h3 class="panel-title"> STATUS </h3>
             </div>
             <div class="panel-body">
               <div class="col-md-11">
-                  <input type="text" class="form-control" placeholder="What's on your mind ?" ng-if="currentUser.profile.$id === uid" ng-model="mind" ng-search="setMind(mind)">
+                  <input type="text" class="form-control" placeholder="What's on your mind ?" ng-if="currentUser.profile.$id === uid" ng-model="mind" ng-search="setMind(mind)" required>
               </div>
               <div class="col-md-1">
                   <img src="{{user.gravatar}}" class="img-responsive  img-circle" ng-if="currentUser.profile.$id === uid" width="50px">
               </div>
             </div>
           </div>
-          <div class="panel panel-default">
+
+          <div class="panel panel-warning">
             <div class="panel-heading">
               <h3 class="panel-title"> UPDATES </h3>
             </div>
-            <div class="panel-body" ng-repeat="message in minds">
+            <div class="panel-body">
+              <div class="well well-md profile-usertitle-name" ng-if="minds.length === 0">
+                <span>No Updates from this User at this time</span>
+              </div>
+            </div>
+            <div class="panel-body" ng-repeat="message in minds | orderBy:'timestamp':true" ng-if="minds && minds.length > 0">
               <div class="col-md-1">
-                <img src="{{user.gravatar}}" class="img-responsive  img-circle" ng-if="currentUser.profile.$id === uid" width="50px">
+                <img src="{{user.gravatar}}" class="img-responsive  img-circle" width="50px">
               </div>
               <div class="col-md-11">
-                <div class="well well-md">
+                <div class="well well-md profile-usertitle-name">
                   <span>{{ message.body }}</span>
                   <span class="pull-right" am-time-ago="message.timestamp"></span>
-                  <div class="dx">
-                    <hr>
-                  </div>
                 </div>
                 <div ng-init="getComments(message.$id)">
-                  <div class="row dx">
+                  <div class="row" ng-repeat="com in comments[message.$id]">
                     <div class="col-md-1">
-                      <img ng-src="{{currentUser.profile.gravatar}}" class="img-circle gravatar">
+                      <img ng-src="{{com.gravatar}}" class="img-circle gravatar">
                     </div>
                     <div class="col-md-11">
-                      <div class="well well-md">
-                        <span class="pull-right" am-time-ago="{{com.timestamp}}"></span><br>
-                        <span>{{com}}</span>
+                      <div class="well well-sm cmt">
+                        <span class="cmt-title">{{com.name}}: </span>
+                        <span class="cmt-time pull-right"><span am-time-ago="{{com.timestamp}}"></span></span><br>
+                        <span>{{com.body}}</span>
                       </div>
                     </div>
                   </div>
+
+                  <div class="row">
+                    <div class="col-md-1">
+                      <img ng-src="{{currentUser.profile.gravatar}}" class="img-circle comment gravatar">
+                    </div>
+
+                    <div class="col-md-11">
+                      <form ng-submit="addComment(message.$id, content); content='' ">
+                        <input type="text" ng-model="content" cols="10" rows="3" class="form-control" placeholder="Comments Here..." required><br>
+                        <span class="pull-right">
+                          <input type="submit" class="btn btn-info" value="Comment">
+                        </span>
+                      </form>
+                    </div>
+                  </div>
                 </div>
-                <form ng-submit="addComment(message.$id, content)">
-                  <input type="text" ng-model="content" cols="10" rows="3" class="form-control dx" placeholder="Comments Here..." required><br>
-                  <span class="pull-right">
-                    <input type="submit" class="btn btn-info" value="Comment">
-                  </span>
-                </form>
               </div>
             </div>
           </div>

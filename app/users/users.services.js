@@ -52,15 +52,6 @@ angular.module('MyCrush')
         return !!Users.user.provider;
       },
 
-      // setMinds: function(uid, mindObj, cb) {
-      //   mindObj['timestamp'] = Firebase.ServerValue.TIMESTAMP;
-      //   return mindsRef.child(uid).push(mindObj, function(err) {
-      //     if (!err) {
-      //       cb();
-      //     }
-      //   });
-      // },
-
       setMinds: function(uid) {
         return $firebaseArray(mindsRef.child(uid));
       },
