@@ -56,6 +56,10 @@ angular.module('MyCrush')
         return $firebaseArray(mindsRef.child(uid));
       },
 
+      // updateMind : function(uid) {
+      //   return $firebaseArray()
+      // },
+
       setCrush: function(id, cb) {
         Users.getProfile(Users.user.uid).$loaded().then(function(profile){
            if (profile.crush) {

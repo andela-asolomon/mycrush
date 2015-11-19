@@ -57,11 +57,17 @@
               </div>
               <div class="col-md-11">
                 <div class="well well-md profile-usertitle-name">
-                  <span>{{ message.body }}</span>
-                  <span class="pull-right" am-time-ago="message.timestamp"></span>
+                  <span ng-if="editing !== message" ng-dblclick="currentUser.profile.$id === uid && openEditor(message)" ng-model="message.body">{{ message.body }}</span>
+
+                  <span class="pull-right"> <span am-time-ago="message.timestamp"></span> &nbsp; <a class="pull-right" ng-if="currentUser.profile.$id === uid" ng-click="openEditor(message)">Edit</a> </span>
+
+                  <form ng-if="(editing === message) && currentUser.profile.$id === uid" ng-submit="saveEdits(message)">
+                     <input class="edit form-control" ng-trim="false" ng-model="message.body" >
+                     <button class="btn btn-info"> submit</button>
+                  </form>
                 </div>
-                <div ng-init="getComments(message.$id)">
-                  <div class="row" ng-repeat="com in comments[message.$id]">
+                <div ng-init="getComments(this)">
+                  <div class="row" ng-repeat="com in comments">
                     <div class="col-md-12">
                     <div class="list-group">
                         <div class="list-group-item">
@@ -71,7 +77,13 @@
                             <div class="row-content">
                                  <div class="least-content" am-time-ago="{{com.timestamp}}"></div>
                                  <span class="cmt-title">{{com.name}}: </span> <br>
-                                 <span>{{com.body}}</span>
+                                 <span ng-if="editing !== com" ng-dblclick="currentUser.profile.$id === com.author && openEditor(com)" >{{com.body}}</span> <span class="pull-right" ><a  ng-if="currentUser.profile.$id === com.author" ng-click="openEditor(com)"> edit</a> <a ng-if="currentUser.profile.$id === com.author" ng-click="deleteComments(this, com)"> Delete</a></span>
+
+                                 <form ng-if=" (editing === com) && currentUser.profile.$id === com.author" ng-submit="updateComment(this, com)">
+                                   <input class="form-control" ng-trim="false" ng-model="com.body" >
+                                   <button class="btn btn-info"> submit</button>
+                                 </form>
+                                 
                             </div>
                         </div>
                         <div class="list-group-separator"></div>
@@ -85,7 +97,7 @@
                     </div>
 
                     <div class="col-md-11">
-                      <form ng-submit="addComment(message.$id, content); content='' ">
+                      <form ng-submit="addComment(this, content); content='' ">
                         <input type="text" ng-model="content" cols="10" rows="3" class="form-control" placeholder="Write a comment..." required><br>
                         <span class="pull-right">
                           <input type="submit" class="btn btn-info" value="Comment">
